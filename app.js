@@ -15,6 +15,10 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app_server/views/jobtrackapp.html'));
 });
 
+app.get('/locate', function(req, res) {
+    res.sendFile(path.join(__dirname + '/app_server/views/locateCompany.html'));
+});
+
 
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: true })); 
