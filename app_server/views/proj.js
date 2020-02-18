@@ -53,7 +53,9 @@
         return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     }
 
-
+    document.getElementById("uploadBtn").onchange = function () {
+      document.getElementById("uploadFile").value = this.value;
+  };
 var myNodelist = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < myNodelist.length; i++) {
