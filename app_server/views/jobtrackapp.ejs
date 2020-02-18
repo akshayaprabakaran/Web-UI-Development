@@ -2,9 +2,10 @@
 <html>
 
 <head>
-<title>Assignment 2</title>
-<link rel="stylesheet" type="text/css" href="beaut.css">
-
+<title>Assignment 2 </title>
+<link rel="stylesheet" type="text/css" href="./views/beaut.css">
+</head>
+<body onload=loadImageFromLocalStorage()>
 <!-- Add the list of companies you wish to apply and strike out the companies you applied-->
 <div id="myDIV" class="header">
   <h1>Job Track Application</h1>
@@ -12,38 +13,31 @@
   <input type="text" id="myInput" placeholder="Company to apply...">
     <span onclick="newElement()" class="addBtn">Add Company</span>
 </div>
-<ul id="myUL">
-  <li>Pocket Gems</li>
-  <li>Synopsys</li>
-  <li class="checked">Pinterest</li>
-    <li>Rakuten</li>
-  <li class="checked">Walmart</li>
-  
-</ul>
-  
-<!-- Locate companies-->
-<p><h2>Locate Companies</h2> <a href="locateCompany.html">Click here to locate companies</a></p>
+<div>
+  <ul id="myUL">
+    <% companies.forEach(function(company) { %>
+      <li class="<%= company.checked %> "><%= company.name %></li>
+    <% }); %>
+  </ul>
+</div>
 
-
-<!-- Select resume in pdf/doc format to upload-->
+<!-- <div>
 <h1>Upload a copy of your resume</h1>
 <form onsubmit="changeImage()">
     <label for="img">Upload Resume</label>
-    <input type="file" id="img" name="img" accept="application/pdf, application/mswor" / >
+    <input type="file" id="img" name="img" accept="application/pdf, application/mswor" />
     <input type="submit">
   </form>
-</head>
 
-<body onload=loadImageFromLocalStorage()>
-
-
+</div> -->
+<div class="jobBoard">
 <!-- drag and drop your job application logo into different status sections -->
   <h2>Your Job Board</h2>
   <p>Application status: Drag and Drop the logo</p>
   <div id="div1" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
     <p>Applied</p>
-    <img src="" draggable="true" ondragstart="drag(event)" id="task" width="150" height="100">
-    <img src="" draggable="true" ondragstart="drag(event)" id="tsak" width="150" height="100">
+    <img src="./images/pinterest logo.png" draggable="true" ondragstart="drag(event)" id="task" width="150" height="100">
+    <img src="./images/walmart logo.png" draggable="true" ondragstart="drag(event)" id="tsak" width="150" height="100">
   </div>
   <div id="div2" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
     <p>Coding Challenge</p>
@@ -60,9 +54,14 @@
   <div id="div5" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
     <p>Rejected</p>
   </div>
-   
+</div>
+<!-- Locate companies-->
+<div class="jobBoard">
+  <h2>Locate Companies</h2> 
+  <a href="/locate">Click here to locate companies</a>
+</div>
 <!-- linking javascript file -->
-<script src="proj.js"></script>
+<script src="./../views/proj.js"></script>
   
 </body>
 
