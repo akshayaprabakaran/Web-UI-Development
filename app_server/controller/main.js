@@ -5,14 +5,15 @@ exports.getHomePage = (req,res)=>{
             name : "Pinterest",
             checked : "checked"
         },{
-            name : "Walmart",
-            checked : ""
-        },{
             name : "Synopsys",
             checked : ""
+            
+        },{
+            name : "Walmart",
+            checked : "checked"
         },{
             name : "Rakuten",
-            checked : "checked"
+            checked : ""
         },{
             name : "Facebook",
             checked : ""
