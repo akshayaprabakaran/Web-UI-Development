@@ -2,70 +2,75 @@
 <html>
 
 <head>
-<title>Assignment 2 </title>
-<link rel="stylesheet" type="text/css" href="./views/beaut.css">
+  <title>Home Page </title>
+  <link rel="stylesheet" type="text/css" href="./views/beaut.css">
 </head>
+
 <body onload="loadImageFromLocalStorage">
-<!-- Add the list of companies you wish to apply and strike out the companies you applied-->
-<div id="myDIV" class="header">
-  <h1 style="font-size:5vw">Job Track Application</h1>
-  <p> <h4>This is an application that helps you to track the status of your job applications</h4></p>
-  <input type="text" id="myInput" placeholder="Company to apply...">
+  <!-- Add the list of companies you wish to apply and strike out the companies you applied-->
+  <div id="myDIV" class="header">
+    <h1 style="font-size:5vw">Job Track Application</h1>
+    <p>
+      <h4>This is an application that helps you to track the status of your job applications</h4>
+    </p>
+    <input type="text" id="myInput" placeholder="Company to apply...">
     <span onclick="newElement()" class="addBtn">Add Company</span>
-</div>
-<div>
-  <ul id="myUL">
-    <% companies.forEach(function(company) { %>
+  </div>
+  <div>
+    <ul id="myUL">
+      <% companies.forEach(function(company) { %>
       <li class="<%= company.checked %> "><%= company.name %></li>
-    <% }); %>
-  </ul>
-</div>
-<hr>
-<div class="jobBoard">
-  <h2>Upload Your Resume</h2>
-  <form action="/upload">
-    <input class="btn" type="file" id="img" name="img" accept="application/pdf, application/mswor" />
-    <input class="btn" type="submit">
-  </form>
-<% if(query.upload === "success") {%>
-  <h4>Successfully Uploaded Resume</h4>
-  <% } %>
-</div>
-<hr>
-<div class="jobBoard">
-<!-- drag and drop your job application logo into different status sections -->
-  <h2>Your Job Board</h2>
-  <p>Application status: Drag and Drop the logo</p>
-  <div id="div1" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Applied</p>
-    <img src="./images/pinterest logo.png" draggable="true" ondragstart="drag(event)" id="task" width="150" height="100"/>
-    <img src="./images/walmart logo.png" draggable="true" ondragstart="drag(event)" id="tsak" width="150" height="100"/>
+      <% }); %>
+    </ul>
   </div>
-  <div id="div2" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Coding Challenge</p>
+  <hr>
+  <div class="jobBoard">
+    <h2>Upload Your Resume</h2>
+    <form action="/upload">
+      <input class="btn" type="file" id="img" name="img" accept="application/pdf, application/mswor" />
+      <input class="btn" type="submit">
+    </form>
+    <% if(query.upload === "success") {%>
+    <h4>Successfully Uploaded Resume</h4>
+    <% } %>
   </div>
-  <div id="div3" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Phone Screen</p>
-  </div>
-  <div id="div4" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Onsite</p>
-  </div>
+  <hr>
+  <div class="jobBoard">
+    <!-- drag and drop your job application logo into different status sections -->
+    <h2>Your Job Board</h2>
+    <p>Application status: Drag and Drop the logo</p>
+    <div id="div1" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p>Applied</p>
+      <img src="./images/pinterest logo.png" draggable="true" ondragstart="drag(event)" id="task" width="150"
+        height="100" />
+      <img src="./images/walmart logo.png" draggable="true" ondragstart="drag(event)" id="tsak" width="150"
+        height="100" />
+    </div>
+    <div id="div2" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p>Coding Challenge</p>
+    </div>
+    <div id="div3" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p>Phone Screen</p>
+    </div>
+    <div id="div4" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p>Onsite</p>
+    </div>
     <div id="div5" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Recruited</p>
+      <p>Recruited</p>
+    </div>
+    <div id="div5" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p>Rejected</p>
+    </div>
   </div>
-  <div id="div5" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>Rejected</p>
+  <hr>
+  <!-- Locate companies-->
+  <div class="jobBoard">
+    <h2>Locate Companies</h2>
+    <a href="/locate">Click here to locate companies</a>
   </div>
-</div>
-<hr>
-<!-- Locate companies-->
-<div class="jobBoard">
-  <h2>Locate Companies</h2> 
-  <a href="/locate">Click here to locate companies</a>
-</div>
-<!-- linking javascript file -->
-<script src="./../views/proj.js"></script>
-  
+  <!-- linking javascript file -->
+  <script src="./../views/proj.js"></script>
+
 </body>
 
 </html>
