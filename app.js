@@ -12,7 +12,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'ejs');
 
-var myRoutes = require('./app_server/routes/main');
+var myRoutes = require('./app_server/routes/routes');
 app.use('/', myRoutes);
 app.use(express.static(path.join(__dirname, '/app_server')));
 

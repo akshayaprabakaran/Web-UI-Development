@@ -35,3 +35,7 @@ exports.uploadResume = (req,res)=>{
     }
     
 }
+
+exports.getRegisterPage = (req,res) =>{
+    res.render('register');
+} 
