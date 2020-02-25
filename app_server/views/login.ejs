@@ -1,27 +1,32 @@
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="./views/loginCSS.css">
-<form method="post" action="index.html">
-  <div class="box">
-    <h1>Dashboard</h1>
+<!DOCTYPE html>
 
-    <input type="email" name="email" value="email" onFocus="field_focus(this, 'email');"
-      onblur="field_blur(this, 'email');" class="email" />
+<html>
 
-    <input type="password" name="email" value="email" onFocus="field_focus(this, 'email');"
-      onblur="field_blur(this, 'email');" class="email" />
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="./views/auth.css">
+</head>
 
-    <a href="#">
-      <div class="btn">Sign In</div>
-    </a> <!-- End Btn -->
+<div class="container">
+  <h1>Welcome to Job Tracker</h1>
 
-    <a href="#">
-      <div id="btn2">Sign Up</div>
-    </a> <!-- End Btn2 -->
+  <hr>
+  <form action="/login" method="POST">
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
 
-  </div> <!-- End Box -->
 
-</form>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
 
-<p>Forgot your password? <u style="color:#f1c40f;">Click Here!</u></p>
+    <hr>
+    <p class="errorMessage"><%= errorMessage %></p>
+    <button type="submit" class="loginbtn">Login</button>
+    <form>
+</div>
 
-<script src="./../views/login.js"></script>
+<div class="container signin">
+  <p>Don't have an account yet ? <a href="/register">Sign up</a>.</p>
+</div>
+
+</html>
