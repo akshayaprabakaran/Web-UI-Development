@@ -5,6 +5,7 @@ var router = express.Router();
 const controller = require('../controller/main');
 const authentication = require('../controller/auth');
 
+router.get('/', controller.getLoginPage); // initial page
 router.get('/home', authentication.isValidUser, controller.getHomePage); // get Register
 router.get('/register', controller.getRegisterPage); // get Register Page
 router.post('/register', controller.submitRegisterForm); //  Register submit
