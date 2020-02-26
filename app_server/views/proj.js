@@ -1,4 +1,5 @@
-   window.requestAnimFrame = (function(callback) {
+        //moving box canvas
+        window.requestAnimFrame = (function(callback) {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
         function(callback) {
           window.setTimeout(callback, 1000 / 60);
@@ -54,11 +55,8 @@
         animate(myRectangle, canvas, context, startTime);
       }, 1000);
       
- 
-
+    //drag and drop logos
     var image = null;
-
-
     function loadImageFromLocalStorage() {
       // If local storage does not have the image, use default
       if (localStorage.getItem("imgData") === null) {
