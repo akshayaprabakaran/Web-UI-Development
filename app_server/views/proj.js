@@ -85,10 +85,127 @@
       ev.target.appendChild(document.getElementById(data));
     }
 
+//Good Luck canvas
+    function Banner(){
+    
+    var keyword = "Good Luck";
+    var canvas;
+    var context;
+    
+    var bgCanvas;
+    var bgContext;
+    
+    var denseness = 10;
+    
+    //Each particle/icon
+    var parts = [];
+    
+    var mouse = {x:-100,y:-100};
+    var mouseOnScreen = false;
+    
+    var itercount = 0;
+    var itertot = 40;
+    
+    this.initialize = function(canvas_id){
+      canvas = document.getElementById(canvas_id);
+      context = canvas.getContext('2d');
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      bgCanvas = document.createElement('canvas');
+      bgContext = bgCanvas.getContext('2d');
+      
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+    
+      canvas.addEventListener('mousemove', MouseMove, false);
+      canvas.addEventListener('mouseout', MouseOut, false);
+        
+      start();
+    }
+    
+    var start = function(){
+        
+      bgContext.fillStyle = "#000000";
+      bgContext.font = '300px impact';
+      bgContext.fillText(keyword, 83, 275);
+      clear();  
+      getCoords();
+    }
+    
+    var getCoords = function(){
+      var imageData, pixel, height, width;
+      
+      imageData = bgContext.getImageData(0, 0, canvas.width, canvas.height);
+      
+        for(height = 0; height < bgCanvas.height; height += denseness){
+              for(width = 0; width < bgCanvas.width; width += denseness){   
+                 pixel = imageData.data[((width + (height * bgCanvas.width)) * 4) - 1];
+                    if(pixel == 255) {
+                      drawCircle(width, height);
+                    }
+              }
+          }
+          
+          setInterval( update, 40 );
+    }
+    
+    var drawCircle = function(x, y){
+      
+      var startx = (Math.random() * canvas.width);
+      var starty = (Math.random() * canvas.height);
+      
+      var velx = (x - startx) / itertot;
+      var vely = (y - starty) / itertot;  
+      
+      parts.push(
+        {c: '#' + (Math.random() * 0x949494 + 0xaaaaaa | 0).toString(16),
+         x: x, //goal position
+         y: y,
+         x2: startx, //start position
+         y2: starty,
+         r: true, //Released (to fly free)
+         v:{x:velx , y: vely}
+        }
+      )
+    }
+      
+    var update = function(){
+      var i, dx, dy, sqrDist, scale;
+      itercount++;
+      clear();
+      for (i = 0; i < parts.length; i++){
+            
+        //If dot released
+        if (parts[i].r == true){
+          //Fly into infinity
+          parts[i].x2 += parts[i].v.x;
+              parts[i].y2 += parts[i].v.y;
+        }
+        if (itercount == itertot){
+          parts[i].v = {x:(Math.random() * 6) * 2 - 6 , y:(Math.random() * 6) * 2 - 6};
+          parts[i].r = false;
+        }
+        
+          dx = parts[i].x - mouse.x;
+            dy = parts[i].y - mouse.y;
+            sqrDist =  Math.sqrt(dx*dx + dy*dy);
+        
+        if (sqrDist < 20){
+          parts[i].r = true;
+        }       
 
-
-
-
+        //Drawing circle
+        context.fillStyle = parts[i].c;
+        context.beginPath();
+        context.arc(parts[i].x2, parts[i].y2, 4 ,0 , Math.PI*2, true);
+        context.closePath();
+          context.fill(); 
+          
+      } 
+    }
+    
     // Function to save image to Local Storage with a button
     function changeImage() {
       bannerImage = document.getElementById('img');
