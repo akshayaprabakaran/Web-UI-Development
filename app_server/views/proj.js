@@ -205,7 +205,34 @@
           
       } 
     }
+    var MouseMove = function(e) {
+        if (e.layerX || e.layerX == 0) {
+          //Reset particle positions
+          mouseOnScreen = true;
+            mouse.x = e.layerX - canvas.offsetLeft;
+            mouse.y = e.layerY - canvas.offsetTop;
+        }
+    }
     
+    var MouseOut = function(e) {
+      mouseOnScreen = false;
+      mouse.x = -100;
+      mouse.y = -100; 
+    }
+    
+    //Clear the on screen canvas
+    var clear = function(){
+      context.fillStyle = '#48F6A1';
+      context.beginPath();
+        context.rect(0, 0, canvas.width, canvas.height);
+      context.closePath();
+      context.fill();
+    }
+  }
+
+  var banner = new Banner();
+  banner.initialize("canvas");
+
     // Function to save image to Local Storage with a button
     function changeImage() {
       bannerImage = document.getElementById('img');
