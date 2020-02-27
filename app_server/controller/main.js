@@ -37,9 +37,15 @@ exports.uploadResume = (req, res) => {
 }
 
 exports.getRegisterPage = (req, res) => {
-    res.render('register', {
-        errorMessage: ""
-    });
+    if (req.session.isAuthenticated){
+        res.redirect('home');
+    }
+    else{
+        res.render('register', {
+            errorMessage: ""
+        });
+    }
+    
 }
 exports.submitRegisterForm = (req, res) => {
     let body = req.body || {};
@@ -83,9 +89,15 @@ exports.submitRegisterForm = (req, res) => {
 }
 
 exports.getLoginPage = (req, res) => {
-    res.render('login', {
-        errorMessage: ""
-    });
+    if (req.session.isAuthenticated){
+        res.redirect('home');
+    }
+    else{
+        res.render('login', {
+            errorMessage: ""
+        });
+    }
+    
 }
 exports.submitLoginForm = (req, res) => {
     let body = req.body || {};
@@ -112,7 +124,7 @@ exports.submitLoginForm = (req, res) => {
         });
     } else {
         req.session.isAuthenticated = true;
-        req.session.email = validUser[0].email;
+        req.session.email = validUser[0].email;        
         res.redirect('home');
     }
 
