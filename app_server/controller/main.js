@@ -88,6 +88,10 @@ exports.submitRegisterForm = (req, res) => {
 
 }
 
+exports.getTab = (req, res) => {
+    res.render('tab');
+}
+
 exports.getLoginPage = (req, res) => {
     if (req.session.isAuthenticated){
         res.redirect('home');

@@ -14,5 +14,6 @@ router.get('/upload', authentication.isValidUser, controller.uploadResume); // u
 router.get('/login', controller.getLoginPage); // get Login Page
 router.post('/login', controller.submitLoginForm); // login submit
 router.get('/logout', authentication.logoutUser); // logout
+router.get('/tab', controller.getTab); // check tab
 
 module.exports = router
