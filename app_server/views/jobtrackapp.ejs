@@ -5,8 +5,13 @@
   <title>Home Page </title>
   <canvas id="canvas" class="canvas2"></canvas>
     <canvas id="myCanvas" class="canvas1"></canvas>
-
-  <link rel="stylesheet" type="text/css" href="./views/beaut.css">
+<link rel="stylesheet" type="text/css" href="./views/beaut.css">
+  <script type="text/javascript" 
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+  src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" 
+  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">
 </head>
 
 <body onload="loadImageFromLocalStorage">
@@ -45,9 +50,10 @@
     <p>Application status: Drag and Drop the logo</p>
     <div id="div1" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
       <p>Applied</p>
-      <img src="./images/pinterest logo.png" draggable="true" ondragstart="drag(event)" id="task" width="150"
+      <!-- images drag and dropped with jquery -->
+      <img src="./images/pinterest logo.png" id="task" width="150"
         height="100" />
-      <img src="./images/walmart logo.png" draggable="true" ondragstart="drag(event)" id="tsak" width="150"
+      <img src="./images/walmart logo.png" id="tsak" width="150"
         height="100" />
     </div>
     <div id="div2" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
