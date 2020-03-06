@@ -1,5 +1,5 @@
 var fs = require('fs');
-exports.getHomePage = (req, res) => {
+exports.getJobTrack = (req, res) => {
     res.render('jobtrackapp', {
         "companies": [{
             name: "Pinterest",
@@ -88,7 +88,7 @@ exports.submitRegisterForm = (req, res) => {
 
 }
 
-exports.getTab = (req, res) => {
+exports.getHomePage = (req, res) => {
     res.render('tab');
 }
 
