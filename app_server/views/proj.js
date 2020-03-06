@@ -1,3 +1,14 @@
+        //jquery logo resizing
+        
+         $(init);
+
+        function init()
+        {
+            $("#task").draggable();
+            $("#tsak").draggable();
+        }        
+
+
         //moving box canvas
         window.requestAnimFrame = (function(callback) {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
