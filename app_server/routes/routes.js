@@ -15,5 +15,6 @@ router.get('/login', controller.getLoginPage); // get Login Page
 router.post('/login', controller.submitLoginForm); // login submit
 router.get('/logout', authentication.logoutUser); // logout
 router.get('/jobtrack', controller.getJobTrack); // check tab
+router.get('/schedule', controller.getSchedulePage); // schedule company visit
 
 module.exports = router

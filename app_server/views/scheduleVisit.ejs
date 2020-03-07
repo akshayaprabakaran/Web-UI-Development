@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" type="text/css" href="https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.css">
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      background-color: #2196F3;
+      padding: 10px;
+    }
+
+    .grid-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      font-size: 30px;
+      text-align: center;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.js"></script>
+  <style>
+    .ui-controlgroup-vertical {
+      width: 150px;
+    }
+
+    .ui-controlgroup.ui-controlgroup-vertical>button.ui-button,
+    .ui-controlgroup.ui-controlgroup-vertical>.ui-controlgroup-label {
+      text-align: center;
+    }
+
+    #company-type-button {
+      width: 120px;
+    }
+
+    .ui-controlgroup-horizontal .ui-spinner-input {
+      width: 20px;
+    }
+  </style>
+  <script>
+    $(function () {
+      $(".controlgroup").controlgroup()
+      $(".controlgroup-vertical").controlgroup({
+        "direction": "vertical"
+      });
+    });
+  </script>
+  <script>
+    function makeReservation() {
+      alert("Look forward to meeting you!");
+    }
+  </script>
+  <script>
+    $(function () {
+      $("#datepicker").datepicker();
+    });
+  </script>
+  <script>
+    $(function () {
+      $('#timepicker').timepicker();
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="widget">
+    <h1>Schedule Your Visit!</h1>
+    <fieldset>
+      <legend>Company</legend>
+      <div class="controlgroup">
+        <select id="company-type">
+          <option>Google</option>
+          <option>Apple</option>
+          <option>Facebook</option>
+        </select>
+        <label for="horizontal-spinner" class="ui-controlgroup-label"># of guests</label>
+        <input id="horizontal-spinner" class="ui-spinner-input">
+        <div>
+          <div>
+            <label>Date:</label>
+            <input type="text" id="datepicker" required="">
+          </div>
+          <div class="col-xs-6 form-group">
+            <div class="input-group">
+              <label>Time:</label>
+              <input type="text" class="form-control" id="timepicker" required="" />
+              <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+            </div>
+          </div>
+        </div>
+        <button id="reservation" onclick="makeReservation()">Reserve</button>
+      </div>
+    </fieldset>
+    <br>
+  </div>
+</body>
+
+</html>
