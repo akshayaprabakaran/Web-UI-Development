@@ -40,6 +40,7 @@ exports.uploadResume = (req, res) => {
 
 }
 
+
 exports.getRegisterPage = (req, res) => {
     if (req.session.isAuthenticated){
         res.redirect('home');
