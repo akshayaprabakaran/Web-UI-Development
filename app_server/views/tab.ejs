@@ -25,7 +25,7 @@
 		<ul>
 			<li><a href="#jobtrack">Job Track</a></li>
 			<li><a href="#locate">Locate Company</a></li>
-			<li><a href="#schedule">Make Schedule</a></li>
+			<li><a href="views/scheduleVisit.html">Make Schedule</a></li>
 		</ul>
 		<div id="jobtrack"></div>
 		<div id="locate"></div>
@@ -39,9 +39,7 @@
 		$.get("/locate", function (data) {
 			$("#locate").html(data);
 		});
-		$.get("/schedule", function (data) {
-			$("#schedule").html(data);
-		});
+		
 	</script>
 </body>
 
