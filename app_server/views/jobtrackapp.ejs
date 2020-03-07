@@ -3,14 +3,10 @@
 
 <head>
   <title>Home Page </title>
-  
-<link rel="stylesheet" type="text/css" href="./views/beaut.css">
-  <script type="text/javascript" 
-  src="../jquery-theme/jquery-ui-theme/jquery.min.js"></script>
-<script type="text/javascript" 
-  src="../jquery-theme/jquery-ui-theme/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" 
-  href="../jquery-theme/jquery-ui-theme/jquery-ui.css">
+  <canvas id="canvas" class="canvas2"></canvas>
+    <canvas id="myCanvas" class="canvas1"></canvas>
+
+  <link rel="stylesheet" type="text/css" href="./views/beaut.css">
 </head>
 
 <body onload="loadImageFromLocalStorage">
@@ -49,10 +45,9 @@
     <p>Application status: Drag and Drop the logo</p>
     <div id="div1" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
       <p>Applied</p>
-      <!-- images drag and dropped with jquery -->
-      <img src="./images/pinterest logo.png" id="task" width="150"
+      <img src="./images/pinterest logo.png" draggable="true" ondragstart="drag(event)" id="task" width="150"
         height="100" />
-      <img src="./images/walmart logo.png" id="tsak" width="150"
+      <img src="./images/walmart logo.png" draggable="true" ondragstart="drag(event)" id="tsak" width="150"
         height="100" />
     </div>
     <div id="div2" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -70,12 +65,9 @@
     <div id="div5" class="divvs" ondrop="drop(event)" ondragover="allowDrop(event)">
       <p>Rejected</p>
     </div>
-    <!-- jquery drag and drop -->
-    
-    
   </div>
   <hr>
-
+ 
   <!-- linking javascript file -->
   <script src="./../views/proj.js"></script>
 
