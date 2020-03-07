@@ -26,6 +26,10 @@ exports.getLocatePage = (req, res) => {
     res.render('locateCompany');
 }
 
+exports.getSchedulePage = (req, res) => {
+    res.render('scheduleVisit');
+}
+
 exports.uploadResume = (req, res) => {
     console.log(req.file, req.query, req.params);
     if (!!req.query && !!req.query.img && !!req.query.img) {
