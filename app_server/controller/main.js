@@ -29,6 +29,9 @@ exports.getLocatePage = (req, res) => {
 exports.getSchedulePage = (req, res) => {
     res.render('scheduleVisit');
 }
+exports.getStickyNotes = (req, res) => {
+    res.render('stickynotes');
+}
 
 exports.uploadResume = (req, res) => {
     console.log(req.file, req.query, req.params);

@@ -26,10 +26,12 @@
 			<li><a href="#jobtrack">Job Track</a></li>
 			<li><a href="#locate">Locate Company</a></li>
 			<li><a href="#schedule">Make Schedule</a></li>
+			<li><a href="#stickynotes">Sticky Notes</a></li>
 		</ul>
 		<div id="jobtrack"></div>
 		<div id="locate"></div>
 		<div id="schedule"></div>
+		<div id="stickynotes"></div>
 	</div>
 	<script>
 		$.get("/jobtrack", function (data) {
@@ -41,6 +43,9 @@
 		});
 		$.get("/schedule", function (data) {
 			$("#schedule").html(data);
+		});
+		$.get("/stickynotes", function (data) {
+			$("#stickynotes").html(data);
 		});
 	</script>
 </body>
