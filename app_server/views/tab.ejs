@@ -7,13 +7,13 @@
 	<title>Welcome</title>
 
 	<link rel="stylesheet" href="../jquery-theme/jquery-ui-theme/jquery-ui.css">
-	
+
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="../jquery-theme/jquery-ui-theme/jquery-ui.js"></script>
 	<script>
 		$(function () {
 			$("#tabs").tabs({
-				
+
 			});
 		});
 	</script>
@@ -21,17 +21,28 @@
 </head>
 
 <body>
-
 	<div id="tabs">
 		<ul>
-			<li><a href="/jobtrack">Job Track</a></li>
-			<li><a href="/locate">Locate Company</a></li>
-			<li><a href="/schedule">Make Schedule</a></li>
+			<li><a href="#jobtrack">Job Track</a></li>
+			<li><a href="#locate">Locate Company</a></li>
+			<li><a href="#schedule">Make Schedule</a></li>
 		</ul>
-
+		<div id="jobtrack"></div>
+		<div id="locate"></div>
+		<div id="schedule"></div>
 	</div>
-
-
+	<script>
+		$.get("/jobtrack", function (data) {
+			console.log("DATA FETCHED ", data)
+			$("#jobtrack").html(data);
+		});
+		$.get("/locate", function (data) {
+			$("#locate").html(data);
+		});
+		$.get("/schedule", function (data) {
+			$("#schedule").html(data);
+		});
+	</script>
 </body>
 
 </html>

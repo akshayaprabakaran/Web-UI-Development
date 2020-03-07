@@ -3,13 +3,14 @@
 
 <head>
   <title>Home Page </title>
-  <canvas id="canvas" class="canvas2"></canvas>
-    <canvas id="myCanvas" class="canvas1"></canvas>
-
+  
   <link rel="stylesheet" type="text/css" href="./views/beaut.css">
 </head>
 
 <body onload="loadImageFromLocalStorage">
+  <canvas id="canvas" class="canvas2" style="width: 100%;"></canvas>
+  <canvas id="myCanvas" class="canvas1"></canvas>
+
   <!-- Add the list of companies you wish to apply and strike out the companies you applied-->
   <div id="myDIV" class="header">
     <h1 style="font-size:5vw">Job Track Application</h1>
@@ -67,13 +68,13 @@
     </div>
   </div>
   <hr>
- 
+
   <!-- linking javascript file -->
   <script src="./../views/proj.js"></script>
 
   <div class="container signin">
     <a href="/logout">Sign Out</a>
-</div>
+  </div>
 </body>
 
 </html>
