@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var sessions = require('express-session');
 var fs = require('fs');
+const connectMongoDB = require("./app_server/config/initMongoDB");
 
 var app = express();
 try {
@@ -27,6 +28,10 @@ app.use(sessions({
     resave: false,
     saveUninitialized: true
 }));
+
+// establish MongoDB connection
+connectMongoDB();
+
 //View engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'ejs');
