@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 const CompanySchema = new Schema({
   name: {
     type: String,
-    unique: true
+    unique: true,
     required: true
   },
   title: {
     type: String,
-    unique: true
-    required: true,
+    unique: true,
+    required: true
   },
   description: {
     type: String
