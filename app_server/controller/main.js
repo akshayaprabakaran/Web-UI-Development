@@ -1,4 +1,4 @@
-var fs = require('fs');
+
 var User = require('./../models/users');
 var Company = require('./../models/companies');
 
@@ -93,6 +93,8 @@ exports.submitRegisterForm = (req, res) => {
                 } else {
                     req.session.isAuthenticated = true;
                     req.session.email = email;
+                    console.log("Valid Email:" + email);
+                    res.cookie('emailAddress', email);
                     res.redirect('home');
                 }
             })
@@ -134,8 +136,11 @@ exports.submitLoginForm = (req, res) => {
                 errorMessage: message
             });
         } else {
+
             req.session.isAuthenticated = true;
             req.session.email = result.email
+            console.log("Login Email: " + result.email);
+            res.cookie('emailAddress', result.email);
             res.redirect('home');
         }
     }
@@ -146,6 +151,8 @@ exports.submitLoginForm = (req, res) => {
 }
 
 exports.getCompanyPage = (req, res) => {
+    var email = JSON.stringify(req.cookies['emailAddress']);
+    console.log(email);
     res.render('postJob');
 }
 
@@ -187,7 +194,10 @@ exports.getCompanyJobPosts = (req, res) => {
 }
 
 exports.getInformation = (req, res) => {
-    var email = "abcde@gmail.com";
+    var email = JSON.stringify(req.cookies['emailAddress']);
+    console.log("Test Email: " + email);
+
+    //var lowercaseEmail = email.toLowerCase();
 
     User.findOne({email: email}, function (err, information){
         if (err){
