@@ -136,10 +136,9 @@ exports.submitLoginForm = (req, res) => {
                 errorMessage: message
             });
         } else {
-
             req.session.isAuthenticated = true;
             req.session.email = result.email
-            console.log("Login Email: " + result.email);
+            console.log("Login Email: " + req.session.email);
             res.cookie('emailAddress', result.email);
             res.redirect('home');
         }
@@ -152,7 +151,7 @@ exports.submitLoginForm = (req, res) => {
 
 exports.getCompanyPage = (req, res) => {
     var email = JSON.stringify(req.cookies['emailAddress']);
-    console.log(email);
+    console.log('cookie email: ' + email);
     res.render('postJob');
 }
 
@@ -191,6 +190,15 @@ exports.getCompanyJobPosts = (req, res) => {
             console.log('No posts found!');
         }
     });
+}
+
+exports.updateJobDescription = (req, res) => {
+    //need object id and updated description
+    //front end (posts.ejs)
+    console.log(req.body._id);
+    console.log(req.body.desc);
+
+    //write update description method
 }
 
 exports.getInformation = (req, res) => {
