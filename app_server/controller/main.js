@@ -78,6 +78,7 @@ exports.submitRegisterForm = (req, res) => {
                 errorMessage: message
             });
         } else {
+            
             const u = new User(body);
             u.save((err) => {
                 if (!!err) {

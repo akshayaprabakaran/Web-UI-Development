@@ -3,6 +3,7 @@ var router = express.Router();
 
 
 const controller = require('../controller/main');
+const usercontroller = require('../controller/user');
 const authentication = require('../controller/auth');
 
 router.get('/', controller.getLoginPage); // initial page
@@ -17,5 +18,8 @@ router.get('/logout', authentication.logoutUser); // logout
 router.get('/jobtrack', controller.getJobTrack); // check tab
 router.get('/schedule', controller.getSchedulePage); // schedule company visit
 router.get('/stickynotes', controller.getStickyNotes); // schedule company visit
+router.get('/users',authentication.isValidUser, usercontroller.getUsers); // get list of users
+router.get('/users/:email',authentication.isValidUser, usercontroller.getOneUser); // get one user
+router.put('/users/:email',authentication.isValidUser, usercontroller.updateUser); // update one user
 
 module.exports = router
