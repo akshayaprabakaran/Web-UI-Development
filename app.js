@@ -40,4 +40,5 @@ var myRoutes = require('./app_server/routes/routes');
 app.use('/', myRoutes);
 app.use(express.static(path.join(__dirname, '/app_server')));
 
+
 app.listen(3000)

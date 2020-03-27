@@ -5,7 +5,7 @@ var user = require("../models/users");
 
 // Get user information
 
-router.route("/getInformation").post(function (req, res){
+router.route('/getInformation').post(function (req, res){
     console.log("Getting user informaiton");
 
     var email = req.body.email;
@@ -21,3 +21,5 @@ router.route("/getInformation").post(function (req, res){
         }
     })
 })
+
+module.exports = router

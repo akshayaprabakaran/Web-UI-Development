@@ -20,5 +20,6 @@ router.get('/stickynotes', controller.getStickyNotes); // get sticky notes
 router.get('/company', controller.getCompanyPage); // get company page
 router.post('/company/postajob', controller.submitJobForm); // post a job
 router.get('/company/jobs', controller.getCompanyJobPosts); // get company jobs
+router.post('/getInformation', controller.getInformation); // get user information
 
 module.exports = router

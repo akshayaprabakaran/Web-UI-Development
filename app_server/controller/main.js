@@ -185,3 +185,17 @@ exports.getCompanyJobPosts = (req, res) => {
         }
     });
 }
+
+exports.getInformation = (req, res) => {
+    var email = "abcde@gmail.com";
+
+    User.findOne({email: email}, function (err, information){
+        if (err){
+            console.log ("Problem getting user information");
+        }
+
+        else{
+            console.log(information); // information object retrieved from db
+        }
+    })
+}
