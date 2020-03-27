@@ -1,5 +1,7 @@
-var fs = require('fs');
+
 var User = require('./../models/users');
+var Company = require('./../models/companies');
+
 exports.getJobTrack = (req, res) => {
     res.render('jobtrackapp', {
         "companies": [{
@@ -92,6 +94,8 @@ exports.submitRegisterForm = (req, res) => {
                 } else {
                     req.session.isAuthenticated = true;
                     req.session.email = email;
+                    console.log("Valid Email:" + email);
+                    res.cookie('emailAddress', email);
                     res.redirect('home');
                 }
             })
@@ -135,6 +139,8 @@ exports.submitLoginForm = (req, res) => {
         } else {
             req.session.isAuthenticated = true;
             req.session.email = result.email
+            console.log("Login Email: " + req.session.email);
+            res.cookie('emailAddress', result.email);
             res.redirect('home');
         }
     }
@@ -142,7 +148,73 @@ exports.submitLoginForm = (req, res) => {
         email
     }, userFoundCallback);
 
+}
 
+exports.getCompanyPage = (req, res) => {
+    var email = JSON.stringify(req.cookies['emailAddress']);
+    console.log('cookie email: ' + email);
+    res.render('postJob');
+}
 
+exports.submitJobForm = (req, res) => {
 
+    console.log(req.body.cname);
+    let body = req.body || {};
+    let name = body.cname || "";
+    let title = body.title || "";
+    let description = body.description || "";
+    let location = body.location || "";
+
+    if(name == " "|| title == " " || description == " " || location == " ") {
+        console.log("Required fields missing: Job Form");
+    } else {
+        const newJob = new Company({
+            name: name,
+            title: title,
+            description: description,
+            location: location
+        });
+        
+        console.log("NEW JOB: " + newJob);
+        newJob.save()
+        .then(() => res.json('New job created!'))
+        .catch(err => res.status(400).json(err))
+    }
+}
+
+exports.getCompanyJobPosts = (req, res) => {
+
+    Company.find({}).then(posts => {
+        if (posts) {
+            res.render('posts', {posts: posts});
+        } else {
+            console.log('No posts found!');
+        }
+    });
+}
+
+exports.updateJobDescription = (req, res) => {
+    //need object id and updated description
+    //front end (posts.ejs)
+    console.log(req.body._id);
+    console.log(req.body.desc);
+
+    //write update description method
+}
+
+exports.getInformation = (req, res) => {
+    var email = JSON.stringify(req.cookies['emailAddress']);
+    console.log("Test Email: " + email);
+
+    //var lowercaseEmail = email.toLowerCase();
+
+    User.findOne({email: email}, function (err, information){
+        if (err){
+            console.log ("Problem getting user information");
+        }
+
+        else{
+            console.log(information); // information object retrieved from db
+        }
+    })
 }
