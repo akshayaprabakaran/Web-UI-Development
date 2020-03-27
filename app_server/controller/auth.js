@@ -1,5 +1,4 @@
 exports.isValidUser = (req, res, next) => {
-    console.log(req.session);
     if (!!req.session.isAuthenticated && !!req.session.email) {
         next();
     } else {

@@ -35,7 +35,6 @@
 	</div>
 	<script>
 		$.get("/jobtrack", function (data) {
-			console.log("DATA FETCHED ", data)
 			$("#jobtrack").html(data);
 		});
 		$.get("/locate", function (data) {
