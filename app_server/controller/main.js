@@ -1,4 +1,5 @@
 var fs = require('fs');
+var User = require('./../models/users');
 exports.getJobTrack = (req, res) => {
     res.render('jobtrackapp', {
         "companies": [{
@@ -21,20 +22,16 @@ exports.getJobTrack = (req, res) => {
         "query": req.query
     });
 }
-
 exports.getLocatePage = (req, res) => {
     res.render('locateCompany');
 }
-
 exports.getSchedulePage = (req, res) => {
     res.render('scheduleVisit');
 }
 exports.getStickyNotes = (req, res) => {
     res.render('stickynotes');
 }
-
 exports.uploadResume = (req, res) => {
-    console.log(req.file, req.query, req.params);
     if (!!req.query && !!req.query.img && !!req.query.img) {
         res.redirect('/?upload=success');
     } else {
@@ -42,24 +39,22 @@ exports.uploadResume = (req, res) => {
     }
 
 }
-
-
 exports.getRegisterPage = (req, res) => {
-    if (req.session.isAuthenticated){
+    if (req.session.isAuthenticated) {
         res.redirect('home');
-    }
-    else{
+    } else {
         res.render('register', {
             errorMessage: ""
         });
     }
-    
+
 }
 exports.submitRegisterForm = (req, res) => {
     let body = req.body || {};
     let repeatPassword = body["psw-repeat"] || "";
     let email = body.email || "";
     let password = body.psw || "";
+    body.password = password;
     let message = "";
     let creds = require('./../../data');
     if (!email || !password || !repeatPassword) {
@@ -70,74 +65,83 @@ exports.submitRegisterForm = (req, res) => {
         message = "Passwords should be 6-14 characters"
     } else if (password !== repeatPassword) {
         message = "Passwords Dont Match"
+    } else if (!body.firstname || !body.lastname) {
+        message = "Firstname and Lastname required"
     }
-    let existingUsers = creds.filter(elem => {
-        return email === elem.email
-    })
-    if (existingUsers.length > 0) {
-        message = "User Exists"
-    }
+    let userFoundCallback = (err, result) => {
+        if (!!result && !!result.email) {
+            message = "User Exists"
+        }
+        if (!!message) {
+            req.session.isAuthenticated = false;
+            res.render('register', {
+                errorMessage: message
+            });
+        } else {
+            const u = new User(body);
+            u.save((err) => {
+                if (!!err) {
+                    message = err.message || "Error with Database";
+                    req.session.isAuthenticated = false;
+                    res.render('register', {
+                        errorMessage: message
+                    });
+                    return;
 
-    if (!!message) {
-        req.session.isAuthenticated = false;
-        res.render('register', {
-            errorMessage: message
-        });
-    } else {
-        creds.push({
-            email: email,
-            password: password
-        });
-        fs.writeFileSync(process.cwd() + '/data.js', 'module.exports = ' + JSON.stringify(creds));
-        req.session.isAuthenticated = true;
-        req.session.email = email;
-        res.redirect('home');
+                } else {
+                    req.session.isAuthenticated = true;
+                    req.session.email = email;
+                    res.redirect('home');
+                }
+            })
+        }
     }
-
+    User.findOne({
+        email
+    }, userFoundCallback);
 }
-
 exports.getHomePage = (req, res) => {
     res.render('tab');
 }
-
 exports.getLoginPage = (req, res) => {
-    if (req.session.isAuthenticated){
+    if (req.session.isAuthenticated) {
         res.redirect('home');
-    }
-    else{
+    } else {
         res.render('login', {
             errorMessage: ""
         });
     }
-    
+
 }
 exports.submitLoginForm = (req, res) => {
     let body = req.body || {};
     let email = body.email || "";
     let password = body.psw || "";
     let creds = require('./../../data');
-    console.log(body)
     let message = "";
     if (!email || !password) {
         message = "Required fields Missing"
     }
-    let validUser = creds.filter(elem => {
-        console.log("Check ", elem, email, password);
-        return email === elem.email && password === elem.password;
-    });
-    console.log("validUSer = ", validUser);
-    if (validUser.length !== 1) {
-        message = "Incorrect Credentials"
+    let userFoundCallback = (err, result) => {
+        if (err || !result || !result.email || result.password !== password) {
+            message = "Incorrect Credentials"
+        }
+        if (!!message) {
+            req.session.isAuthenticated = false;
+            res.render('login', {
+                errorMessage: message
+            });
+        } else {
+            req.session.isAuthenticated = true;
+            req.session.email = result.email
+            res.redirect('home');
+        }
     }
-    if (!!message) {
-        req.session.isAuthenticated = false;
-        res.render('login', {
-            errorMessage: message
-        });
-    } else {
-        req.session.isAuthenticated = true;
-        req.session.email = validUser[0].email;        
-        res.redirect('home');
-    }
+    User.findOne({
+        email
+    }, userFoundCallback);
+
+
+
 
 }

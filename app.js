@@ -10,7 +10,6 @@ var app = express();
 try {
     if (fs.existsSync(process.cwd() + '/data.js')) {
         //file exists
-        console.log("Exists")
     } else {
         fs.writeFileSync(process.cwd() + '/data.js', 'module.exports = []');
     }
@@ -41,5 +40,4 @@ var myRoutes = require('./app_server/routes/routes');
 app.use('/', myRoutes);
 app.use(express.static(path.join(__dirname, '/app_server')));
 
-app.listen(3000);
-console.log("Running port 3000");
+app.listen(3000)
