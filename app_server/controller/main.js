@@ -174,3 +174,14 @@ exports.submitJobForm = (req, res) => {
         .catch(err => res.status(400).json(err))
     }
 }
+
+exports.getCompanyJobPosts = (req, res) => {
+
+    Company.find({}).then(posts => {
+        if (posts) {
+            res.render('posts', {posts: posts});
+        } else {
+            console.log('No posts found!');
+        }
+    });
+}

@@ -19,5 +19,6 @@ router.get('/schedule', controller.getSchedulePage); // schedule company visit
 router.get('/stickynotes', controller.getStickyNotes); // get sticky notes
 router.get('/company', controller.getCompanyPage); // get company page
 router.post('/company/postajob', controller.submitJobForm); // post a job
+router.get('/company/jobs', controller.getCompanyJobPosts); // get company jobs
 
 module.exports = router
