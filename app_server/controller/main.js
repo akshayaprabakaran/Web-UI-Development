@@ -1,5 +1,7 @@
 var fs = require('fs');
 var User = require('./../models/users');
+var Company = require('./../models/companies');
+
 exports.getJobTrack = (req, res) => {
     res.render('jobtrackapp', {
         "companies": [{
@@ -141,7 +143,34 @@ exports.submitLoginForm = (req, res) => {
         email
     }, userFoundCallback);
 
+}
 
+exports.getCompanyPage = (req, res) => {
+    res.render('postJob');
+}
 
+exports.submitJobForm = (req, res) => {
 
+    console.log(req.body.cname);
+    let body = req.body || {};
+    let name = body.cname || "";
+    let title = body.title || "";
+    let description = body.description || "";
+    let location = body.location || "";
+
+    if(name == " "|| title == " " || description == " " || location == " ") {
+        console.log("Required fields missing: Job Form");
+    } else {
+        const newJob = new Company({
+            name: name,
+            title: title,
+            description: description,
+            location: location
+        });
+        
+        console.log("NEW JOB: " + newJob);
+        newJob.save()
+        .then(() => res.json('New job created!'))
+        .catch(err => res.status(400).json(err))
+    }
 }

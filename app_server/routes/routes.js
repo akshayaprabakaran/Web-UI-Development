@@ -16,6 +16,8 @@ router.post('/login', controller.submitLoginForm); // login submit
 router.get('/logout', authentication.logoutUser); // logout
 router.get('/jobtrack', controller.getJobTrack); // check tab
 router.get('/schedule', controller.getSchedulePage); // schedule company visit
-router.get('/stickynotes', controller.getStickyNotes); // schedule company visit
+router.get('/stickynotes', controller.getStickyNotes); // get sticky notes
+router.get('/company', controller.getCompanyPage); // get company page
+router.post('/company/postajob', controller.submitJobForm); // post a job
 
 module.exports = router
