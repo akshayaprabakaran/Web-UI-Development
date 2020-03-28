@@ -15,36 +15,14 @@ connectMongoDB();
 app.set('views', path.join(__dirname, 'core', 'views'));
 app.set('view engine', 'ejs');
 // initialize routes
-app.get('/', (req, res) => {
-    res.render('home', {
-        errorMessage: "",
-        list: [{
-            id: "G123",
-            title: "Software Developer",
-            description: "Hello , Welcome to Google",
-            postedOn: new Date().getTime(),
-        }]
-    });
+app.get('/', controller.searchPosting);
+app.get('/editpost', controller.showEditPage);
+app.get('/newpost', (req, res) => {
+    res.render('newpost');
 });
+app.get('/deletepost', controller.deletePosting);
 app.get('/getPosting/:id', controller.getPosting);
-app.post('/searchPosting', (req, res) => {
-    let search = (req.body || {}).searchThis || null;
-    res.render('home', {
-        errorMessage: "",
-        list: [{
-            id: "G123ufd",
-            title: "Software Developer",
-            description: "Hello , Welcome to Google",
-            postedOn: new Date().getTime(),
-        },{
-            id: "G123",
-            title: "Software Developer",
-            description: "Hello , Welcome to Google",
-            postedOn: new Date().getTime(),
-        }]
-    });
-});
+app.post('/searchPosting', controller.searchPosting);
 app.post('/createPosting', controller.createPosting);
-app.put('/updatePosting/:id', controller.updatePosting);
-app.delete('/deletePosting/:id', controller.deletePosting);
+app.post('/updatePosting/:id', controller.updatePosting);
 app.listen(3000)

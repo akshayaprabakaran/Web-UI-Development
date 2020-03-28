@@ -8,14 +8,15 @@ const PostSchema = new Schema({
         unique: true
     },
     title: {
-        type: String
+        type: String,
+        required: true,
     },
     description: {
         type: String
     },
     postedOn: {
-        type: String,
-        required: false
+        type: Number,
+        required: true,
     },
 });
 
