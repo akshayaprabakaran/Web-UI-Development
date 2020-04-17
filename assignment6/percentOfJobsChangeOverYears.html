@@ -9,7 +9,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
 	},
 	axisX: {
-		valueFormatString: "'YY"
+		valueFormatString: "'YY",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
 	},
 	axisY2: {
 		title: "Silicon Valley and San Francisco"
