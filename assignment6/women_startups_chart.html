@@ -30,16 +30,16 @@
             label: 'Silicon Valley',
             data: ySilicon,
             fill:false,
-            backgroundColor: 'rgba(255, 99, 132, 1)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgb(51, 153, 102)',
+            borderColor: 'rgb(51, 153, 102)',
             borderWidth: 2
         },
         {
             label: 'San Francisco',
             data: ySf,
             fill:false,
-            backgroundColor: 'rgb(51, 153, 102)',
-            borderColor: 'rgb(51, 153, 102)',
+            backgroundColor: 'rgba(255, 99, 132, 1)',
+            borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 2
         },
         {
@@ -55,11 +55,8 @@
 });
 }
 
-
-
-
 		async function getData(){
-			const response = await fetch('wom.csv');
+			const response = await fetch('women_startups.csv');
 			const data = await response.text();
 			const table = data.split('\n').slice(1);
 			table.forEach(row=>{
