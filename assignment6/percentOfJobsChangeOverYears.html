@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Simple Line Chart"
+	},
+    axisX:{
+           valueFormatString:"##",
+    },
+
+	axisY:{
+		includeZero: false
+	},
+	data: [{        
+		type: "line",
+		showInLegend: true,
+		name: "Total Number of Startups - San Francisco",
+		markerType: "circle",
+        xValueFormatString:"Total Number of Startups - San Francisco '##",
+        color: "#F08080",
+		dataPoints: [
+        
+			{ label: "98", y: 1399878 },
+			{ label: "99", y: 1326080 },
+			{ label: "00", y: 1317909 },
+			{ label: "01", y: 1326903 },
+			{ label: "02", y: 1360110 },
+			{ label: "03", y: 1385809 },
+            { label: "04", y: 1385809 },
+            { label: "05", y: 1385809 },
+            { label: "06", y: 1385809 },
+            { label: "07", y: 1385809 },
+			{ label: "08", y: 1397293 },
+			{ label: "09", y: 1308755 },
+			{ label: "10", y: 1292138 },
+			{ label: "11", y: 1325064 },
+			{ label: "12", y: 1376826 },
+			{ label: "13", y: 1423491 },
+			{ label: "14", y: 1481442 },
+			{ label: "15", y: 1545805 },
+			{ label: "16", y: 1591426 },
+			{ label: "17", y: 1638698 },
+			{ label: "18", y: 1674255 },
+			{ label: "19", y: 1703228 }
+		]
+        
+        
+	}],
+    
+    
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
