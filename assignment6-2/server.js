@@ -35,10 +35,6 @@ csvtojson()
         });
     });
 
-app.get('/test', controller.getJobGrowth);
-
-app.get('/getJobGrowthChart', (req, res) => {
-    //res.render('jobGrowthLineChart');
-});
+app.get('/getJobGrowthChart', controller.getJobGrowth);
 
 app.listen(3000)
