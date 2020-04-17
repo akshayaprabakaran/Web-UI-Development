@@ -22,7 +22,7 @@
 			await getData();
 		const ctx = document.getElementById('chart').getContext('2d');
 		const myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: xlabels,
         datasets: [
