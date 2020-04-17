@@ -22,7 +22,7 @@ app.get('getMergedCharts', (req,res) => {
 });
 
 csvtojson()
-  .fromFile("test.csv")
+  .fromFile("jobGrowth.csv")
   .then(csvData => {
     console.log(csvData)
   });
