@@ -16,8 +16,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		}
 	},
 	axisY2: {
-		title: "Silicon Valley and San Francisco"
-		
+		title: "Silicon Valley and San Francisco",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
 	},
 	toolTip: {
 		shared: true
