@@ -27,18 +27,18 @@ csvtojson()
     .then(csvData => {
         csvData.forEach((data) => {
             console.log(data);
-            
-            var job = new jobGrowthModel({quarter: data.Quarter, jobs: parseInt(data.Jobs)});
+            var job = new jobGrowthModel({ quarter: data.Quarter, jobs: parseInt(data.Jobs) });
             job.save((err, res) => {
                 if (err) throw err;
                 else console.log('Job saved.');
             });
         });
-        console.log(csvData);
     });
 
+app.get('/test', controller.getJobGrowth);
+
 app.get('/getJobGrowthChart', (req, res) => {
-    res.render('jobGrowthLineChart');
+    //res.render('jobGrowthLineChart');
 });
 
 app.listen(3000)
