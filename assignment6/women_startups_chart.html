@@ -51,6 +51,18 @@
             borderWidth: 2
         }
         ]
+    },
+	options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                	beginAtZero: true,
+                    callback: function(value, index, values) {
+                        return value + '%';
+                    }
+                }
+            }]
+        }
     }
 });
 }
