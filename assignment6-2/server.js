@@ -26,7 +26,9 @@ csvtojson()
     .fromFile("jobGrowth.csv")
     .then(csvData => {
         csvData.forEach((data) => {
-            var job = new jobGrowthModel({quarter: data.Quarter, jobs: data.Jobs});
+            console.log(data);
+            
+            var job = new jobGrowthModel({quarter: data.Quarter, jobs: parseInt(data.Jobs)});
             job.save((err, res) => {
                 if (err) throw err;
                 else console.log('Job saved.');
