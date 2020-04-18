@@ -42,13 +42,12 @@
 			chart.render();
 
 			$("#addDataPoint").click(function () {
-				
-				var jobs = document.getElementById("jobs").innerHTML;
-				JSON.parse(jobs);
-				for (var points of jobs) {
-					//pass points into dataPoints
-				}
-				chart.options.data[0].dataPoints.push({ label: 'Q2 2001', y: 20201010 });
+
+				let jobData = '<%- JSON.stringify(jobs) %>';
+				let obj = JSON.parse(jobData);
+				Object.keys(obj).forEach(function(key) {
+					chart.options.data[0].dataPoints.push({ label: JSON.stringify([key].quarter), y: obj[key].jobs });
+				})
 				chart.render();
 			});
 
@@ -66,7 +65,6 @@
 
 <body>
 	<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
-	<span id='jobs' hidden> <%= JSON.stringify(jobs) %> </span>
 	<button id="addDataPoint">Generate Data Point</button>
 </body>
 
