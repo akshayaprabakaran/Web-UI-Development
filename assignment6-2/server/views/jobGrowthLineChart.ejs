@@ -39,19 +39,14 @@
 				}]
 			});
 
-			chart.render();
-
-			$("#addDataPoint").click(function () {
-
-				let jobData = '<%- JSON.stringify(jobs) %>';
-				let obj = JSON.parse(jobData);
-				Object.keys(obj).forEach(function (key) {
-					chart.options.data[0].dataPoints.push(
-						{ label: JSON.stringify(obj[key].quarter), y: obj[key].jobs }
-					);
-				});
-				chart.render();
+			let jobData = '<%- JSON.stringify(jobs) %>';
+			let obj = JSON.parse(jobData);
+			Object.keys(obj).forEach(function (key) {
+				chart.options.data[0].dataPoints.push(
+					{ label: JSON.stringify(obj[key].quarter), y: obj[key].jobs }
+				);
 			});
+			chart.render();
 
 			function toogleDataSeries(e) {
 				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -67,7 +62,6 @@
 
 <body>
 	<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
-	<button id="addDataPoint">Generate Data Point</button>
 </body>
 
 </html>
