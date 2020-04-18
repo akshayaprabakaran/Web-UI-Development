@@ -1,7 +1,59 @@
-var fs = require('fs');
 var JobGrowth = require('./../models/JobGrowth');
 var TotalEmp = require('./../models/TotalEmp');
 var Women = require('./../models/Women');
+
+exports.loadCSV = (data, modelName, csvDataLength) => {
+
+   let jobGrowthQuery = JobGrowth.find({});
+   let sectorQuery = TotalEmp.find({});
+   let womenQuery = Women.find({});
+
+   switch (modelName) {
+      case 'jobGrowthModel':
+         jobGrowthQuery.exec(function (err, d) {
+            if (err) throw err;
+            else saveData(d, csvDataLength, data, modelName);
+         })
+         break;
+      case 'totalEmpModel':
+         sectorQuery.exec(function (err, d) {
+            if (err) throw err;
+            else saveData(d, csvDataLength, data, modelName);
+         })
+         break;
+      case 'womenModel':
+         womenQuery.exec(function (err, d) {
+            if (err) throw err;
+            else saveData(d, csvDataLength, data, modelName);
+         })
+         break;
+   }
+}
+
+async function saveData(dataSet, csvDataLength, csvData, modelName) {
+   if (dataSet.length >= csvDataLength) {
+      console.log(modelName + ' dataset already exists!');
+   } else {
+      csvData.forEach((obj) => {
+         let dataSet = null;
+         switch (modelName) {
+            case 'jobGrowthModel':
+               dataSet = new JobGrowth({ quarter: obj.Quarter, jobs: parseInt(obj.Jobs) });
+               break;
+            case 'totalEmpModel':
+               dataSet = new TotalEmp({ sector: obj.Sector, percentage: parseInt(obj.Percentage) });
+               break;
+            case 'womenModel':
+               dataSet = new Women({ year: obj.Year, silicon: parseInt(obj.Silicon), san: parseInt(obj.San), cal: parseInt(obj.California) });
+               break;
+         }
+         dataSet.save((err, res) => {
+            if (err) throw err;
+            else console.log('Dataset Saved.');
+         });
+      });
+   }
+}
 
 exports.getJobGrowth = (req, res) => {
    JobGrowth.find({}).sort('quarter').exec(function (err, data) {
