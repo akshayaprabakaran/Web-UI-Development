@@ -27,40 +27,63 @@ app.get('getMergedCharts', (req, res) => {
 csvtojson()
     .fromFile("jobGrowth.csv")
     .then(csvData => {
-        csvData.forEach((data) => {
-            console.log(data);
-            var job = new jobGrowthModel({ quarter: data.Quarter, jobs: parseInt(data.Jobs) });
-            job.save((err, res) => {
-                if (err) throw err;
-                else console.log('Job saved.');
-            });
-        });
+        jobGrowthModel.find({}, (err, data) => {
+            if (err) throw err;
+            else if (data.length >= 19) {
+                console.log('job growth data set already exists...');
+                return;
+            } else {
+                csvData.forEach((data) => {
+                    console.log(data);
+                    var job = new jobGrowthModel({ quarter: data.Quarter, jobs: parseInt(data.Jobs) });
+                    job.save((err, res) => {
+                        if (err) throw err;
+                        else console.log('Job saved.');
+                    });
+                });
+            }
+        })
     });
 csvtojson()
     .fromFile("sector.csv")
     .then(csvData => {
-        csvData.forEach((data) => {
-            console.log(data);
-            var emp = new totalEmpModel({ sector: data.Sector, percentage: parseInt(data.Percentage) });
-            emp.save((err, res) => {
-                if (err) throw err;
-                else console.log('Employment Sector saved.');
-            });
-        });
+        totalEmpModel.find({}, (err, data) => {
+            if (err) throw err;
+            else if (data.length >= 4) {
+                console.log('sector data set already exists...');
+                return;
+            } else {
+                csvData.forEach((data) => {
+                    console.log(data);
+                    var emp = new totalEmpModel({ sector: data.Sector, percentage: parseInt(data.Percentage) });
+                    emp.save((err, res) => {
+                        if (err) throw err;
+                        else console.log('Employment Sector saved.');
+                    });
+                });
+            }
+        })
     });
 csvtojson()
     .fromFile("women_startups.csv")
     .then(csvData => {
-        csvData.forEach((data) => {
-            console.log(data);
-            var wom = new womenModel({ year: data.Year, silicon: parseInt(data.Silicon),san: parseInt(data.San),cal: parseInt(data.California)});
-            wom.save((err, res) => {
-                if (err) throw err;
-                else console.log('Women Startups saved.');
-            });
-        });
+        womenModel.find({}, (err, data) => {
+            if (err) throw err;
+            else if (data.length >= 3) {
+                console.log('women data set already exists...');
+                return;
+            } else {
+                csvData.forEach((data) => {
+                    console.log(data);
+                    var wom = new womenModel({ year: data.Year, silicon: parseInt(data.Silicon), san: parseInt(data.San), cal: parseInt(data.California) });
+                    wom.save((err, res) => {
+                        if (err) throw err;
+                        else console.log('Women Startups saved.');
+                    });
+                });
+            }
+        })
     });
-
 
 app.get('/getJobGrowthChart', controller.getJobGrowth);
 app.get('/getTotalEmp', controller.getTotalEmp);
