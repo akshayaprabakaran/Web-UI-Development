@@ -45,9 +45,11 @@
 
 				let jobData = '<%- JSON.stringify(jobs) %>';
 				let obj = JSON.parse(jobData);
-				Object.keys(obj).forEach(function(key) {
-					chart.options.data[0].dataPoints.push({ label: JSON.stringify([key].quarter), y: obj[key].jobs });
-				})
+				Object.keys(obj).forEach(function (key) {
+					chart.options.data[0].dataPoints.push(
+						{ label: JSON.stringify(obj[key].quarter), y: obj[key].jobs }
+					);
+				});
 				chart.render();
 			});
 
