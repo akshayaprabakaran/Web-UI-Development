@@ -22,7 +22,7 @@ exports.getTotalEmp = (req, res) => {
 exports.getWomen = (req, res) => {
    Women.find({} ,(err, data) => {
          if (err) console.log(err, err.stack); // an error occurred
-         else res.render('womenChart', {silicon: data},{san:data},{cal:data});
+         else res.render('womenChart', {womenData: data});
          console.log(data);
          return;
    })
