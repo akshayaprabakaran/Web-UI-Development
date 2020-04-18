@@ -19,17 +19,12 @@ connectMongoDB();
 app.set('views', path.join(__dirname, 'server', 'views'));
 app.set('view engine', 'ejs');
 
-// initialize routes
-app.get('getMergedCharts', (req, res) => {
-    res.render('mergedCharts');
-});
-
 csvtojson()
     .fromFile("jobGrowth.csv")
     .then(csvData => {
         jobGrowthModel.find({}, (err, data) => {
             if (err) throw err;
-            else if (data.length >= 19) {
+            else if (data.length >= csvData.length) {
                 console.log('job growth data set already exists...');
                 return;
             } else {
@@ -49,7 +44,7 @@ csvtojson()
     .then(csvData => {
         totalEmpModel.find({}, (err, data) => {
             if (err) throw err;
-            else if (data.length >= 4) {
+            else if (data.length >= csvData.length) {
                 console.log('sector data set already exists...');
                 return;
             } else {
@@ -69,7 +64,7 @@ csvtojson()
     .then(csvData => {
         womenModel.find({}, (err, data) => {
             if (err) throw err;
-            else if (data.length >= 3) {
+            else if (data.length >= csvData.length) {
                 console.log('women data set already exists...');
                 return;
             } else {
@@ -84,7 +79,11 @@ csvtojson()
             }
         })
     });
+// initialize routes
 
+app.get('/', (req, res) => {
+    res.render('mergedCharts');
+});
 app.get('/getJobGrowthChart', controller.getJobGrowth);
 app.get('/getTotalEmp', controller.getTotalEmp);
 app.get('/getWomen', controller.getWomen);
