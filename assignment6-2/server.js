@@ -6,6 +6,7 @@ var controller = require('./server/controller/charts');
 var app = express();
 const csvtojson = require("csvtojson");
 const jobGrowthModel = require('./server/models/JobGrowth');
+const totalEmpModel = require('./server/models/TotalEmp');
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded());
 // Parse JSON bodies (as sent by API clients)
@@ -34,7 +35,20 @@ csvtojson()
             });
         });
     });
+csvtojson()
+    .fromFile("sector.csv")
+    .then(csvData => {
+        csvData.forEach((data) => {
+            console.log(data);
+            var emp = new totalEmpModel({ sector: data.Sector, percentage: parseInt(data.Percentage) });
+            emp.save((err, res) => {
+                if (err) throw err;
+                else console.log('Employment Sector saved.');
+            });
+        });
+    });
 
 app.get('/getJobGrowthChart', controller.getJobGrowth);
+app.get('/getTotalEmp', controller.getTotalEmp);
 
 app.listen(3000)
