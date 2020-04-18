@@ -7,6 +7,7 @@ var app = express();
 const csvtojson = require("csvtojson");
 const jobGrowthModel = require('./server/models/JobGrowth');
 const totalEmpModel = require('./server/models/TotalEmp');
+const womenModel = require('./server/models/Women');
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded());
 // Parse JSON bodies (as sent by API clients)
@@ -47,8 +48,22 @@ csvtojson()
             });
         });
     });
+csvtojson()
+    .fromFile("women_startups.csv")
+    .then(csvData => {
+        csvData.forEach((data) => {
+            console.log(data);
+            var wom = new womenModel({ year: data.Year, silicon: parseInt(data.Silicon),san: parseInt(data.San),cal: parseInt(data.California)});
+            wom.save((err, res) => {
+                if (err) throw err;
+                else console.log('Women Startups saved.');
+            });
+        });
+    });
+
 
 app.get('/getJobGrowthChart', controller.getJobGrowth);
 app.get('/getTotalEmp', controller.getTotalEmp);
+app.get('/getWomen', controller.getWomen);
 
 app.listen(3000)
