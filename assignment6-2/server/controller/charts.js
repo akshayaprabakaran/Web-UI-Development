@@ -2,7 +2,7 @@ var JobGrowth = require('./../models/JobGrowth');
 var TotalEmp = require('./../models/TotalEmp');
 var Women = require('./../models/Women');
 
-exports.loadCSV = (data, modelName, csvDataLength) => {
+exports.loadCSV = (csvData, modelName) => {
 
    let jobGrowthQuery = JobGrowth.find({});
    let sectorQuery = TotalEmp.find({});
@@ -10,28 +10,28 @@ exports.loadCSV = (data, modelName, csvDataLength) => {
 
    switch (modelName) {
       case 'jobGrowthModel':
-         jobGrowthQuery.exec(function (err, d) {
+         jobGrowthQuery.exec(function (err, modelData) {
             if (err) throw err;
-            else saveData(d, csvDataLength, data, modelName);
+            else saveData(modelData, csvData, modelName);
          })
          break;
       case 'totalEmpModel':
-         sectorQuery.exec(function (err, d) {
+         sectorQuery.exec(function (err, modelData) {
             if (err) throw err;
-            else saveData(d, csvDataLength, data, modelName);
+            else saveData(modelData, csvData, modelName);
          })
          break;
       case 'womenModel':
-         womenQuery.exec(function (err, d) {
+         womenQuery.exec(function (err, modelData) {
             if (err) throw err;
-            else saveData(d, csvDataLength, data, modelName);
+            else saveData(modelData, csvData, modelName);
          })
          break;
    }
 }
 
-async function saveData(dataSet, csvDataLength, csvData, modelName) {
-   if (dataSet.length >= csvDataLength) {
+async function saveData(modelData, csvData, modelName) {
+   if (modelData.length >= csvData.length) {
       console.log(modelName + ' dataset already exists!');
    } else {
       csvData.forEach((obj) => {

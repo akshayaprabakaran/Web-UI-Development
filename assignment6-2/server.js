@@ -17,15 +17,15 @@ app.set('views', path.join(__dirname, 'server', 'views'));
 app.set('view engine', 'ejs');
 
 csvtojson().fromFile("women_startups.csv").then(csvData => {
-    controller.loadCSV(csvData, "womenModel", csvData.length);
+    controller.loadCSV(csvData, "womenModel");
 })
 
 csvtojson().fromFile("sector.csv").then(csvData => {
-    controller.loadCSV(csvData, "totalEmpModel", csvData.length);
+    controller.loadCSV(csvData, "totalEmpModel");
 })
 
 csvtojson().fromFile("jobGrowth.csv").then(csvData => {
-    controller.loadCSV(csvData, "jobGrowthModel", csvData.length);
+    controller.loadCSV(csvData, "jobGrowthModel");
 })
 
 // initialize routes
