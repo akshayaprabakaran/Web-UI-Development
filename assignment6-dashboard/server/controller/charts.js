@@ -72,7 +72,7 @@ exports.getMerged = (req, res) => {
    JobGrowth.find({}).sort('quarter').exec(function (err, jobData) {
       if (err) console.log(err, err.stack); // an error occurred
       else {
-         TotalEmp.find({}).sort('sector').exec(function (err, sectorData){
+         TotalEmp.find({}).sort('percentage').exec(function (err, sectorData){
             if (err) console.log(err, err.stack); // an error occurred
             else {
                Women.find({}).sort('year').exec(function (err, womenData) {
