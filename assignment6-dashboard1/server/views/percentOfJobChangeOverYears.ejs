@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<script>
+		window.onload = function () {
+
+			var chart = new CanvasJS.Chart("chartContainer", {
+				title: {
+					text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
+				},
+				axisX: {
+					valueFormatString: "'YY",
+					crosshair: {
+						enabled: true,
+						snapToDataPoint: true
+					}
+				},
+				axisY2: {
+					title: "Silicon Valley and San Francisco",
+					crosshair: {
+						enabled: true,
+						snapToDataPoint: true
+					}
+				},
+				toolTip: {
+					shared: true
+				},
+				legend: {
+					cursor: "pointer",
+					verticalAlign: "top",
+					horizontalAlign: "center",
+					dockInsidePlotArea: true,
+					itemclick: toogleDataSeries
+				},
+				data: [{
+					type: "line",
+					axisYType: "secondary",
+					name: "Total of Number Startups - San Francisco",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				},
+				{
+					type: "line",
+					axisYType: "secondary",
+					name: "Total of Number Startups - Silicon Valley",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				},
+				{
+					type: "line",
+					axisYType: "secondary",
+					name: "Total of Number Startups - California",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				},
+				{
+					type: "line",
+					axisYType: "secondary",
+					name: "Seed or Early-Stage Startups - San Francisco",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				},
+				{
+					type: "line",
+					axisYType: "secondary",
+					name: "Seed or Early-Stage Startups - Silicon Valley",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				},
+				{
+					type: "line",
+					axisYType: "secondary",
+					name: "Seed or Early-Stage Startups - California",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				}
+				]
+			});
+
+			let earlyData = '<%- JSON.stringify(early) %>';
+			let obj4 = JSON.parse(earlyData);
+			Object.keys(obj4).forEach(function (key) {
+				chart.options.data[0].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAnumbers) }
+				);
+				chart.options.data[1].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAnumbers) }
+				);
+				chart.options.data[2].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
+				);
+				chart.options.data[0].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
+				);
+				chart.options.data[1].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
+				);
+				chart.options.data[2].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
+				);
+			});
+
+			chart.render();
+
+			function toogleDataSeries(e) {
+				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+					e.dataSeries.visible = false;
+				} else {
+					e.dataSeries.visible = true;
+				}
+				chart.render();
+			}
+
+		}
+	</script>
+</head>
+
+<body>
+	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>
