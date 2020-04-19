@@ -4,12 +4,23 @@
 <head>
     <script>
         window.onload = function () {
+             CanvasJS.addColorSet("earlyShades",
+                [//colorSet Array
 
-            var chart = new CanvasJS.Chart("chartContainer", {
+                "#365253",
+                "#ce8732",
+                "#a7ce9f",
+            
+                ]);
+
+            var chart = new CanvasJS.Chart("chartContainer",
+        {
+            colorSet: "earlyShades",
                 title: {
                     text: "Percentage Growth of Startups Founded by Women",
                     fontFamily: "Verdana",
-                    fontColor: "rgb(96, 32, 64)"
+                    fontColor: "#85a47f",
+                    fontSize:25
                 },
                 axisX: {
                     title: "Years",
@@ -19,7 +30,7 @@
                         snapToDataPoint: true
                     }
                 },
-                axisY2: {
+                axisY: {
                     title: "Percentage",
                     gridThickness: 1,
                     gridColor: "black",
@@ -46,7 +57,7 @@
                     type: "line",
 
                     showInLegend: true,
-                    color: "rgb(51, 153, 102)",
+                    //color: "rgb(51, 153, 102)",
                     axisYType: "primary",
                     name: "Total Number of Startups - Silicon Valley",
                     showInLegend: true,
@@ -56,7 +67,7 @@
                 {
                     type: "line",
                     showInLegend: true,
-                    color: "rgba(255, 99, 132, 1)",
+                    //color: "rgba(255, 99, 132, 1)",
                     axisYType: "primary",
                     name: "Total Number of Startups - San Francisco",
                     showInLegend: true,
@@ -67,7 +78,7 @@
                     type: "line",
                     showInLegend: true,
                     axisYType: "primary",
-                    color: "rgb(204, 163, 0)",
+                    //color: "rgb(204, 163, 0)",
                     name: "Total Number of Startups - California",
                     showInLegend: true,
                     markerSize: 10,
@@ -77,16 +88,16 @@
             });
 
             let womenData = '<%- JSON.stringify(womenData) %>';
-            let obj = JSON.parse(womenData);
-            Object.keys(obj).forEach(function (key) {
+            let obj2 = JSON.parse(womenData);
+            Object.keys(obj2).forEach(function (key) {
                 chart.options.data[0].dataPoints.push(
-                    { label: JSON.stringify(obj[key].year), y: parseInt(obj[key].silicon) }
+                    { label: JSON.stringify(obj2[key].year), y: parseInt(obj2[key].silicon) }
                 );
                 chart.options.data[1].dataPoints.push(
-                    { label: JSON.stringify(obj[key].year), y: parseInt(obj[key].san) }
+                    { label: JSON.stringify(obj2[key].year), y: parseInt(obj2[key].san) }
                 );
                 chart.options.data[2].dataPoints.push(
-                    { label: JSON.stringify(obj[key].year), y: parseInt(obj[key].cal) }
+                    { label: JSON.stringify(obj2[key].year), y: parseInt(obj2[key].cal) }
                 );
             });
 
