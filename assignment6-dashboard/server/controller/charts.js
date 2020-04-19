@@ -105,10 +105,10 @@ exports.getMerged = (req, res) => {
          })
       }
       exports.getTotalEmp = (req, res) => {
-         TotalEmp.find({}).sort('sector').exec(function (err, data){
+         TotalEmp.find({}).sort('percentage').exec(function (err, sectorData){
             if (err) console.log(err, err.stack); // an error occurred
-            else res.render('piepie', { percentage: data });
-            console.log(data);
+            else res.render('piepie', { percentage: sectorData });
+            console.log(sectorData);
             return;
          })
       }
