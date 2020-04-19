@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -167,118 +168,108 @@
             chart.render();
 
             var chart = new CanvasJS.Chart("chartContainer4", {
-				title: {
-					text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
-				},
-				axisX: {
-					valueFormatString: "'YY",
-					crosshair: {
-						enabled: true,
-						snapToDataPoint: true
-					}
-				},
-				axisY2: {
-					title: "Silicon Valley and San Francisco",
-					crosshair: {
-						enabled: true,
-						snapToDataPoint: true
-					}
-				},
-				toolTip: {
-					shared: true
-				},
-				legend: {
-					cursor: "pointer",
-					verticalAlign: "top",
-					horizontalAlign: "center",
-					dockInsidePlotArea: true,
-					itemclick: toogleDataSeries
-				},
-				data: [{
-					type: "line",
-					axisYType: "secondary",
-					name: "Total of Number Startups - California",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
-				},
-				{
-					type: "line",
-					axisYType: "secondary",
-					name: "Total of Number Startups - San Francisco",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
-				},
-				{
-					type: "line",
-					axisYType: "secondary",
-					name: "Total of Number Startups - Silicon Valley",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
-				},
-				{
-					type: "line",
-					axisYType: "secondary",
-					name: "Seed or Early-Stage Startups - California",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
-				},
-				{
-					type: "line",
-					axisYType: "secondary",
-					name: "Seed or Early-Stage Startups - San Francisco",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
-				},
-				{
-					type: "line",
-					axisYType: "secondary",
-					name: "Seed or Early-Stage Startups - Silicon Valley",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
-				}
-				]
-			});
+                title: {
+                    text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
+                },
+                axisX: {
+                    valueFormatString: "'YY",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                axisY2: {
+                    title: "Silicon Valley and San Francisco",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    verticalAlign: "top",
+                    horizontalAlign: "center",
+                    dockInsidePlotArea: true,
+                    itemclick: toogleDataSeries
+                },
+                data: [{
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Total of Number Startups - California",
+                    showInLegend: true,
+                    markerSize: 0,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Total of Number Startups - San Francisco",
+                    showInLegend: true,
+                    markerSize: 0,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Total of Number Startups - Silicon Valley",
+                    showInLegend: true,
+                    markerSize: 0,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Seed or Early-Stage Startups - California",
+                    showInLegend: true,
+                    markerSize: 0,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Seed or Early-Stage Startups - San Francisco",
+                    showInLegend: true,
+                    markerSize: 0,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Seed or Early-Stage Startups - Silicon Valley",
+                    showInLegend: true,
+                    markerSize: 0,
+                    dataPoints: []
+                }
+                ]
+            });
 
-			let earlyData = '<%- JSON.stringify(early) %>';
-			let obj4 = JSON.parse(earlyData);
-			Object.keys(obj4).forEach(function (key) {
-				chart.options.data[0].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAnumbers) }
-				);
-				chart.options.data[1].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFnumbers) }
-				);
-				chart.options.data[2].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVnumbers) }
-				);
-<<<<<<< HEAD
-				chart.options.data[3].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAEarly) }
-				);
-				chart.options.data[4].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFEarly) }
-				);
-				chart.options.data[5].dataPoints.push(
-=======
-				chart.options.data[0].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAEarly) }
-				);
-				chart.options.data[1].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFEarly) }
-				);
-				chart.options.data[2].dataPoints.push(
->>>>>>> 8902e4665a1771a934468c31bb09ff4a0337cb83
-					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVEarly) }
-				);
-			});
+            let earlyData = '<%- JSON.stringify(early) %>';
+            let obj4 = JSON.parse(earlyData);
+            Object.keys(obj4).forEach(function (key) {
+                chart.options.data[0].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAnumbers) }
+                );
+                chart.options.data[1].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
+                );
+                chart.options.data[2].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
+                );
+                chart.options.data[3].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAEarly) }
+                );
+                chart.options.data[4].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFEarly) }
+                );
+                chart.options.data[5].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVEarly) }
+                );
+            });
 
-			chart.render();
+            chart.render();
 
             function toogleDataSeries(e) {
                 if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
