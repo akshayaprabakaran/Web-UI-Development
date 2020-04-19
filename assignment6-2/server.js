@@ -30,6 +30,7 @@ csvtojson().fromFile("jobGrowth.csv").then(csvData => {
 
 // Early Seed Companies
 
+
 // initialize routes
 app.get('/', (req, res) => {
     res.render('mergedCharts');
