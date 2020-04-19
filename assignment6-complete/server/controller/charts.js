@@ -56,7 +56,8 @@ async function saveData(modelData, csvData, modelName) {
                dataSet = new Women({ year: obj.Year, silicon: parseInt(obj.Silicon), san: parseInt(obj.San), cal: parseInt(obj.California) });
                break;
             case 'earlyModel':
-               dataSet = new Early({ years: obj.Years, CAnumbers: parseInt(obj.CANumbers), SFnumbers: parseInt(obj.SFNumbers), SVnumbers: parseInt(obj.SVNumbers) });
+               dataSet = new Early({ years: obj.Years, CAnumbers: parseInt(obj.CANumbers), SFnumbers: parseInt(obj.SFNumbers), SVnumbers: parseInt(obj.SVNumbers),
+                                                       CAEarly:   parseInt(obj.CAEarly),   SFEarly: parseInt(obj.SFEarly),     SVEarly: parseInt(obj.SVEarly)});
                break;
          }
          dataSet.save((err, res) => {

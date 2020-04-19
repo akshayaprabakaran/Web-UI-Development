@@ -197,6 +197,14 @@
 				data: [{
 					type: "line",
 					axisYType: "secondary",
+					name: "Total of Number Startups - California",
+					showInLegend: true,
+					markerSize: 0,
+					dataPoints: []
+				},
+				{
+					type: "line",
+					axisYType: "secondary",
 					name: "Total of Number Startups - San Francisco",
 					showInLegend: true,
 					markerSize: 0,
@@ -213,7 +221,7 @@
 				{
 					type: "line",
 					axisYType: "secondary",
-					name: "Total of Number Startups - California",
+					name: "Seed or Early-Stage Startups - California",
 					showInLegend: true,
 					markerSize: 0,
 					dataPoints: []
@@ -233,14 +241,6 @@
 					showInLegend: true,
 					markerSize: 0,
 					dataPoints: []
-				},
-				{
-					type: "line",
-					axisYType: "secondary",
-					name: "Seed or Early-Stage Startups - California",
-					showInLegend: true,
-					markerSize: 0,
-					dataPoints: []
 				}
 				]
 			});
@@ -252,19 +252,19 @@
 					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAnumbers) }
 				);
 				chart.options.data[1].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAnumbers) }
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
 				);
 				chart.options.data[2].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
 				);
 				chart.options.data[0].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAEarly) }
 				);
 				chart.options.data[1].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFEarly) }
 				);
 				chart.options.data[2].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
+					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVEarly) }
 				);
 			});
 

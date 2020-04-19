@@ -17,6 +17,18 @@ var EarlySchema = new Schema({
     SVnumbers: {
         type: Number,
         required: true
+    },
+    CAEarly:{
+        type: Number,
+        required: true,
+    },
+    SFEarly:{
+        type: Number, 
+        required: true
+    },
+    SVEarly:{
+        type: Number,
+        required:true
     }
 });
 
