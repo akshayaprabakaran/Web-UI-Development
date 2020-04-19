@@ -16,19 +16,19 @@ connectMongoDB();
 app.set('views', path.join(__dirname, 'server', 'views'));
 app.set('view engine', 'ejs');
 
-csvtojson().fromFile("women_startups.csv").then(csvData => {
+csvtojson().fromFile("./csvData/women_startups.csv").then(csvData => {
     controller.loadCSV(csvData, "womenModel");
 })
 
-csvtojson().fromFile("sector.csv").then(csvData => {
+csvtojson().fromFile("./csvData/sector.csv").then(csvData => {
     controller.loadCSV(csvData, "totalEmpModel");
 })
 
-csvtojson().fromFile("jobGrowth.csv").then(csvData => {
+csvtojson().fromFile("./csvData/jobGrowth.csv").then(csvData => {
     controller.loadCSV(csvData, "jobGrowthModel");
 })
 
-csvtojson().fromFile("early.csv").then(csvData => {
+csvtojson().fromFile("./csvData/early.csv").then(csvData => {
     controller.loadCSV(csvData, "earlyModel");
 })
 
