@@ -257,6 +257,7 @@
 				chart.options.data[2].dataPoints.push(
 					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVnumbers) }
 				);
+<<<<<<< HEAD
 				chart.options.data[3].dataPoints.push(
 					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAEarly) }
 				);
@@ -264,6 +265,15 @@
 					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFEarly) }
 				);
 				chart.options.data[5].dataPoints.push(
+=======
+				chart.options.data[0].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAEarly) }
+				);
+				chart.options.data[1].dataPoints.push(
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFEarly) }
+				);
+				chart.options.data[2].dataPoints.push(
+>>>>>>> 8902e4665a1771a934468c31bb09ff4a0337cb83
 					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVEarly) }
 				);
 			});
