@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+CanvasJS.addColorSet("earlyShades",
+                [//colorSet Array
+                "#c1dcbb",
+                "#85a47f",
+                "#5e9a78",
+                "#365253"         
+                ]);
+
+        var chart = new CanvasJS.Chart("chartContainer",
+        {
+            colorSet: "earlyShades",
+
+    animationEnabled: true,
+    title: {
+        text: "Total Employment by Major Areas of Economic Activity (Silicon Valley)",
+        fontFamily: "Verdana",
+        fontColor: "#85a47f",
+        fontSize:25
+    },
+     axisX: {
+                    title:"Employment Sectors", 
+                    //valueFormatString: "YYYY",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                axisY: {
+                    title: "Percentage",
+                    gridThickness: 1,
+                    gridColor: "black",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+    legend: {
+        // horizontalAlign: "left",
+        verticalAlign: "bottom",
+          fontSize: 15
+              },
+    data: [{
+        type: "bar",
+        indexLabelFontSize: 16,
+        indexLabelFontColor:"white",
+        startAngle: 95,
+        //showInLegend: true,
+        // toolTipContent: "{label}:</b>{y}%",
+
+        indexLabel: "{y}%",
+        indexLabelFontSize:25,
+        indexLabelPlacement: "inside", 
+        dataPoints: []
+    }]
+ });
+let percentageData = '<%- JSON.stringify(percentage) %>';
+            let obj = JSON.parse(percentageData);
+            Object.keys(obj).forEach(function (key) {
+                chart.options.data[0].dataPoints.push(
+                    { label: JSON.stringify(obj[key].sector), y: obj[key].percentage,legendText:JSON.stringify(obj[key].sector)}
+                );
+            });
+chart.render();
+
+function toogleDataSeries(e) {
+				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+					e.dataSeries.visible = false;
+				} else {
+					e.dataSeries.visible = true;
+				}
+				chart.render();
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

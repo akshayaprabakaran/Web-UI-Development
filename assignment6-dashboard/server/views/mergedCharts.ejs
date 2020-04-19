@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer1", {
+                animationEnabled: true,
+                //theme: "light2",
+                title: {
+                    text: "Job Growth",
+
+                    fontFamily: "Verdana",
+                    fontColor: "#85a47f",
+                    fontSize:25
+                },
+                axisY: {
+                    title: "Total Number of Jobs",
+                    crosshair: {
+                        enabled: true
+                    }
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    verticalAlign: "bottom",
+                    horizontalAlign: "left",
+                    dockInsidePlotArea: true,
+                    itemclick: toogleDataSeries
+                },
+                data: [{
+                    type: "line",
+                    showInLegend: true,
+                    name: "Total Jobs",
+                    markerType: "square",
+                    xValueFormatString: "Q#, YYYY",
+                    color: "#5e9a78",
+                    dataPoints: []
+                }]
+            });
+
+            let jobData = '<%- JSON.stringify(jobs) %>';
+            let obj = JSON.parse(jobData);
+            Object.keys(obj).forEach(function (key) {
+                chart.options.data[0].dataPoints.push(
+                    { label: JSON.stringify(obj[key].quarter), y: obj[key].jobs }
+                );
+            });
+            chart.render();
+
+            CanvasJS.addColorSet("earlyShades",
+                [//colorSet Array
+
+                "#365253",
+                "#ce8732",
+                "#a7ce9f",
+            
+                ]);
+
+        var chart = new CanvasJS.Chart("chartContainer2",
+        {
+            colorSet: "earlyShades",
+                title: {
+                    text: "Percentage Growth of Startups Founded by Women",
+                    fontFamily: "Verdana",
+                    fontColor: "#85a47f",
+                    fontSize:25
+                },
+                axisX: {
+                    title: "Years",
+                    valueFormatString: "YYYY",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                axisY2: {
+                    title: "Percentage",
+                    gridThickness: 1,
+                    gridColor: "black",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                toolTip: {
+                    shared: true,
+                    animationEnabled: true
+
+                },
+                legend: {
+                    cursor: "pointer",
+                    verticalAlign: "top",
+                    horizontalAlign: "center",
+                    dockInsidePlotArea: false,
+                    itemclick: toogleDataSeries,
+                    fontSize: 15,
+
+                },
+                data: [{
+                    type: "line",
+
+                    showInLegend: true,
+                    //color: "rgb(51, 153, 102)",
+                    axisYType: "primary",
+                    name: "Total Number of Startups - Silicon Valley",
+                    showInLegend: true,
+                    markerSize: 25,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    showInLegend: true,
+                    //color: "rgba(255, 99, 132, 1)",
+                    axisYType: "primary",
+                    name: "Total Number of Startups - San Francisco",
+                    showInLegend: true,
+                    markerSize: 10,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    showInLegend: true,
+                    axisYType: "primary",
+                    //color: "rgb(204, 163, 0)",
+                    name: "Total Number of Startups - California",
+                    showInLegend: true,
+                    markerSize: 10,
+                    dataPoints: []
+                }
+                ]
+            });
+
+            let womenData = '<%- JSON.stringify(womenData) %>';
+            let obj2 = JSON.parse(womenData);
+            Object.keys(obj2).forEach(function (key) {
+                chart.options.data[0].dataPoints.push(
+                    { label: JSON.stringify(obj2[key].year), y: parseInt(obj2[key].silicon) }
+                );
+                chart.options.data[1].dataPoints.push(
+                    { label: JSON.stringify(obj2[key].year), y: parseInt(obj2[key].san) }
+                );
+                chart.options.data[2].dataPoints.push(
+                    { label: JSON.stringify(obj2[key].year), y: parseInt(obj2[key].cal) }
+                );
+            });
+
+            chart.render();
+
+            
+             CanvasJS.addColorSet("earlyShades",
+                [//colorSet Array
+                "#c1dcbb",
+                "#85a47f",
+                "#5e9a78",
+                "#365253"         
+                ]);
+
+        var chart = new CanvasJS.Chart("chartContainer3",
+        {
+            colorSet: "earlyShades",
+
+    animationEnabled: true,
+    title: {
+        text: "Total Employment by Major Areas of Economic Activity (Silicon Valley)",
+        fontFamily: "Verdana",
+        fontColor: "#85a47f",
+        fontSize:25
+    },
+     axisX: {
+                    title:"Employment Sectors", 
+                    //valueFormatString: "YYYY",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                axisY: {
+                    title: "Percentage",
+                    gridThickness: 1,
+                    gridColor: "black",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+    legend: {
+        // horizontalAlign: "left",
+        verticalAlign: "bottom",
+          fontSize: 15
+              },
+    data: [{
+        type: "bar",
+        indexLabelFontSize: 16,
+        indexLabelFontColor:"white",
+        startAngle: 95,
+        //showInLegend: true,
+        // toolTipContent: "{label}:</b>{y}%",
+
+        indexLabel: "{y}%",
+        indexLabelFontSize:25,
+        indexLabelPlacement: "inside", 
+        dataPoints: []
+    }]
+ });
+let percentageData = '<%- JSON.stringify(percentage) %>';
+            let obj3 = JSON.parse(percentageData);
+            Object.keys(obj3).forEach(function (key) {
+                chart.options.data[0].dataPoints.push(
+                    { label: JSON.stringify(obj3[key].sector), y: obj3[key].percentage,legendText:JSON.stringify(obj3[key].sector)}
+                );
+            });
+chart.render();
+
+            CanvasJS.addColorSet("earlyShades",
+                [//colorSet Array
+
+                "#a7ce9f",
+                "#5e9a78",
+                "#365253",
+                "#ce8732",
+                "#f7d98a",
+                "#ac9760"               
+                ]);
+
+        var chart = new CanvasJS.Chart("chartContainer4",
+        {
+            colorSet: "earlyShades",
+                title: {
+                    ttext: "Seed/Early-Stage Startups &Total Number of Startups",
+                    fontFamily: "Verdana",
+                    fontColor: "#85a47f",
+                    fontSize:25
+                },
+                axisX: {
+                    valueFormatString: "'YY",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                axisY2: {
+                    title: "Silicon Valley and San Francisco",
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    verticalAlign: "top",
+                    horizontalAlign: "center",
+                    dockInsidePlotArea: false,
+                    itemclick: toogleDataSeries
+                },
+                data: [{
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Total Number of Startups - California",
+                    showInLegend: true,
+                    markerSize: 0,
+                    lineThickness:2,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Total Number of Startups - San Francisco",
+                    showInLegend: true,
+                    markerSize: 0,
+                    lineThickness:2,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Total Number of Startups - Silicon Valley",
+                    showInLegend: true,
+                    markerSize: 0,
+                    lineThickness:4,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Seed/Early-Stage Startups - California",
+                    showInLegend: true,
+                    markerSize: 0,
+                    lineThickness:2,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Seed/Early-Stage Startups - San Francisco",
+                    showInLegend: true,
+                    markerSize: 0,
+                    lineThickness:2,
+                    dataPoints: []
+                },
+                {
+                    type: "line",
+                    axisYType: "secondary",
+                    name: "Seed/Early-Stage Startups - Silicon Valley",
+                    showInLegend: true,
+                    markerSize: 0,
+                    lineThickness:4,
+                    dataPoints: []
+                }
+                ]
+            });
+
+            let earlyData = '<%- JSON.stringify(early) %>';
+            let obj4 = JSON.parse(earlyData);
+            Object.keys(obj4).forEach(function (key) {
+                chart.options.data[0].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAnumbers) }
+                );
+                chart.options.data[1].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFnumbers) }
+                );
+                chart.options.data[2].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVnumbers) }
+                );
+                chart.options.data[3].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAEarly) }
+                );
+                chart.options.data[4].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFEarly) }
+                );
+                chart.options.data[5].dataPoints.push(
+                    { label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVEarly) }
+                );
+            });
+
+            chart.render();
+
+            function toogleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+        }
+    </script>
+</head>
+
+<body style="height: 100%; overflow: visible">
+    <h1 align="center" style="font-family:Georgia; font-size:40px;color:#CFBA09; align-content:center; margin-bottom:40px">Rise Of Silicon Valley Dashboard</h1>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <div class="dashboard" style="position: fixed;width: 100vw;height: 100vh; ">
+    <div id="chartContainer1" style="width: 45%; height: 400px;display: inline-block; margin-bottom:40px;margin-right: 60px"></div>
+    <div id="chartContainer2" style="width: 45%; height: 400px;display: inline-block;margin-bottom:40px"></div><br />
+    <div id="chartContainer3" style="width: 45%; height: 400px;display: inline-block;margin-top:40px;margin-right: 60px;margin-bottom:0; padding-bottom:0"></div>
+    <div id="chartContainer4" style="width: 45%; height: 400px;display: inline-block;margin-top:40px;margin-bottom:0; padding-bottom:0"></div>
+    </div>
+</body>
