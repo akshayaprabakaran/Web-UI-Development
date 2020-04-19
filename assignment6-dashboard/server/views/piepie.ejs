@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Total Employment by Major Areas of Economic Activity (Silicon Valley)",
+		fontFamily: "Verdana",
+        fontColor: "#E25D7D"
+	},
+	legend: {
+        // horizontalAlign: "left",
+        verticalAlign: "bottom",
+          fontSize: 20
+              },
+	data: [{
+		type: "pie",
+		indexLabelFontSize: 16,
+		startAngle: 95,
+		showInLegend: true,
+		toolTipContent: "{label}:</b>{y}%",
+
+		yValueFormatString: "##0.00",
+		indexLabel: "{label}",
+		dataPoints: []
+// 			{y: 49.7,name:"Community Infrastructure & Services", legendText: "Community Infrastructure & Services",legendMarkerType:"circle",color:"#1B4F72"},
+// 			{y: 26.5, name:"Innovation and Information Products & Services",legendText: "Innovation and Information Products & Services",legendMarkerType:"circle",color:"#2874A6" },
+// 			{y: 16.0, name:"Business Infrastructure & Services",legendText: "Business Infrastructure & Services",legendMarkerType:"circle",color:"#3498DB"},
+// 			{y: 7.8, name:"Others",legendText: "Others",legendMarkerType:"circle",color:"#5DADE2"}
+// 		]
+	}]
+ });
+let percentageData = '<%- JSON.stringify(percentage) %>';
+			let obj = JSON.parse(percentageData);
+			Object.keys(obj).forEach(function (key) {
+				chart.options.data[0].dataPoints.push(
+					{ label: JSON.stringify(obj[key].sector), y: obj[key].percentage,legendText:JSON.stringify(obj[key].sector) }
+				);
+			});
+chart.render();
+
+function toogleDataSeries(e) {
+				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+					e.dataSeries.visible = false;
+				} else {
+					e.dataSeries.visible = true;
+				}
+				chart.render();
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
