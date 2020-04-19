@@ -88,22 +88,22 @@
 			let obj4 = JSON.parse(earlyData);
 			Object.keys(obj4).forEach(function (key) {
 				chart.options.data[0].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAnumbers) }
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAnumbers) }
 				);
 				chart.options.data[1].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFnumbers) }
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFnumbers) }
 				);
 				chart.options.data[2].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVnumbers) }
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVnumbers) }
 				);
 				chart.options.data[0].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].CAEarly) }
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].CAEarly) }
 				);
 				chart.options.data[1].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SFEarly) }
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SFEarly) }
 				);
 				chart.options.data[2].dataPoints.push(
-					{ label: JSON.stringify(obj4[key].year), y: parseInt(obj4[key].SVEarly) }
+					{ label: JSON.stringify(obj4[key].years), y: parseInt(obj4[key].SVEarly) }
 				);
 			});
 
