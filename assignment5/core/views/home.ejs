@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Postings</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Job Postings</h1>
+            <p class="lead">This is a simple page where organizations can upload new, edit, search for the job openings
+                they have in their organization.</p>
+            <form action="/searchPosting" method="POST">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Postings (Name or Id)"
+                        aria-label="Search Postings (Name or Id)" aria-describedby="button-addon2" name="searchThis">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </div>
+                <a class="btn btn-primary float-left" href="/newpost" role="button">Add New</a>
+                <a class="btn btn-secondary float-right" href="/" role="button">Reset Search</a>
+            </form>
+            <br><br><br><br>
+            <div class="row">
+                <% if(!list || !list.length) {%>
+                    <div class="text-center"><p>No Postings yet</p></div>
+                
+                <% } else {%>
+                <% list.forEach( card => { %>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header">
+                            ID : <%= card.id %>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= card.title %></h5>
+                            <p class="card-text"><%= card.description %>
+                            </p>
+                            <p class="card-text"><small
+                                    class="text-muted"><%= new Date(card.postedOn).toLocaleString() %></small></p>
+                            <a href="/editpost?id=<%=card.id%>" class="btn btn-primary float-left"><svg
+                                    class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z"
+                                        clip-rule="evenodd" />
+                                </svg></a>
+                            <a href="/deletepost?id=<%=card.id%>" class="btn btn-primary float-right"><svg
+                                    class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                        clip-rule="evenodd" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+                <% }%>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever')
+            alert("recipient" + recipient) // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
