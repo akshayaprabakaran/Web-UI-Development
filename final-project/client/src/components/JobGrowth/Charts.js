@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CanvasJSReact from '../../assets/canvasjs.react';
+import { Container, Row, Col } from 'reactstrap';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Charts extends Component {
@@ -75,10 +76,27 @@ class Charts extends Component {
 
     render() {
         return (
-            <div>
-                {this.renderRuns()}
-                <CanvasJSChart options={this.state.lineChart} />
-            </div>
+            <Container>
+                {/* Columns are always 50% wide, on mobile and desktop */}
+                <Row>
+                    <Col xs={6}>
+                        {this.renderRuns()}
+                        <CanvasJSChart options={this.state.lineChart} />
+                    </Col>
+                    <Col xs={6}>
+                        {this.renderRuns()}
+                        <CanvasJSChart options={this.state.lineChart} />
+                    </Col>
+                    <Col xs={6}>
+                        {this.renderRuns()}
+                        <CanvasJSChart options={this.state.lineChart} />
+                    </Col>
+                    <Col xs={6}>
+                        {this.renderRuns()}
+                        <CanvasJSChart options={this.state.lineChart} />
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
