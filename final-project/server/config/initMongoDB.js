@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongoURI = "mongodb://localhost:27017/assignment6";
+const mongoURI = "mongodb://localhost:27017/finalproject";
 
 const options = {
     useNewUrlParser: true, 

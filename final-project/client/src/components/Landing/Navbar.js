@@ -30,7 +30,7 @@ class Landing extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink tag={Link} to="/jobgrowth">JobGrowth</NavLink>
+                                <NavLink tag={Link} to="/employment">Employment</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={Link} to="/">StartUp</NavLink>

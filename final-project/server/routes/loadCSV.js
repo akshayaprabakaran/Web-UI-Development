@@ -1,43 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const csvtojson = require("csvtojson");
-const JobGrowth = require('./../models/JobGrowth');
-const TotalEmp = require('./../models/TotalEmp');
-const Women = require('./../models/Women');
-const Early = require('./../models/Early');
+const TotalJobGrowth = require('./../models/Employment/TotalJobGrowth');
+const RelativeJobGrowth = require('./../models/Employment/RelativeJobGrowth');
+const EconomicActivity = require('./../models/Employment/EconomicActivity');
 
-csvtojson().fromFile(__dirname + '/../csvData/jobGrowth.csv').then(csvData => {
-   loadCSV(csvData, "jobGrowthModel");
-});
+convertCSVtoJSON(__dirname + '/../csvData/Employment/totalJobGrowth.csv', 'totalJobGrowthModel');
+convertCSVtoJSON(__dirname + '/../csvData/Employment/relativeJobGrowth.csv', 'relativeJobGrowthModel');
+convertCSVtoJSON(__dirname + '/../csvData/Employment/economicActivity.csv', 'economicActivityModel');
+
+async function convertCSVtoJSON(dir, modelName) {
+   csvtojson().fromFile(dir).then(csvData => {
+      loadCSV(csvData, modelName);
+   });
+}
 
 async function loadCSV(csvData, modelName) {
 
-   let jobGrowthQuery = JobGrowth.find({});
-   let sectorQuery = TotalEmp.find({});
-   let womenQuery = Women.find({});
-   let earlyQuery = Early.find({});
+   let totalJobGrowthQuery = TotalJobGrowth.find({});
+   let relativeJobGrowthQuery = RelativeJobGrowth.find({});
+   let economicActivityQuery = EconomicActivity.find({});
 
    switch (modelName) {
-      case 'jobGrowthModel':
-         jobGrowthQuery.exec(function (err, modelData) {
+      case 'totalJobGrowthModel':
+         totalJobGrowthQuery.exec(function (err, modelData) {
             if (err) throw err;
             else saveData(modelData, csvData, modelName);
          })
          break;
-      case 'totalEmpModel':
-         sectorQuery.exec(function (err, modelData) {
+      case 'relativeJobGrowthModel':
+         relativeJobGrowthQuery.exec(function (err, modelData) {
             if (err) throw err;
             else saveData(modelData, csvData, modelName);
          })
          break;
-      case 'womenModel':
-         womenQuery.exec(function (err, modelData) {
-            if (err) throw err;
-            else saveData(modelData, csvData, modelName);
-         })
-         break;
-      case 'earlyModel':
-         earlyQuery.exec(function (err, modelData) {
+      case 'economicActivityModel':
+         economicActivityQuery.exec(function (err, modelData) {
             if (err) throw err;
             else saveData(modelData, csvData, modelName);
          })
@@ -52,20 +50,14 @@ async function saveData(modelData, csvData, modelName) {
       csvData.forEach((obj) => {
          let dataSet = null;
          switch (modelName) {
-            case 'jobGrowthModel':
-               dataSet = new JobGrowth({ quarter: obj.Quarter, jobs: parseInt(obj.Jobs) });
+            case 'totalJobGrowthModel':
+               dataSet = new TotalJobGrowth({ quarter: obj.Quarter, jobs: parseInt(obj.Jobs) });
                break;
-            case 'totalEmpModel':
-               dataSet = new TotalEmp({ sector: obj.Sector, percentage: parseInt(obj.Percentage) });
+            case 'relativeJobGrowthModel':
+               dataSet = new RelativeJobGrowth({ year: obj.Year, location: obj.Location, percentages: obj.Percentages });
                break;
-            case 'womenModel':
-               dataSet = new Women({ year: obj.Year, silicon: parseInt(obj.Silicon), san: parseInt(obj.San), cal: parseInt(obj.California) });
-               break;
-            case 'earlyModel':
-               dataSet = new Early({
-                  years: obj.Years, CAnumbers: parseInt(obj.CANumbers), SFnumbers: parseInt(obj.SFNumbers), SVnumbers: parseInt(obj.SVNumbers),
-                  CAEarly: parseInt(obj.CAEarly), SFEarly: parseInt(obj.SFEarly), SVEarly: parseInt(obj.SVEarly)
-               });
+            case 'economicActivityModel':
+               dataSet = new EconomicActivity({ activity: obj.Activity, percentages: obj.Percentages });
                break;
          }
          dataSet.save((err, res) => {

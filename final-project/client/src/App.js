@@ -1,6 +1,6 @@
 import React from 'react';
 import Landing from "./components/Landing/Navbar";
-import JobGrowth from "./components/JobGrowth/Charts";
+import Employment from "./components/Employment/Charts";
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <div>
           <Route path="/" component={Landing} />
-          <Route path="/jobgrowth" component={JobGrowth} />
+          <Route path="/employment" component={Employment} />
         </div>
       </div>
     </Router>

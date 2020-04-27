@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const JobGrowthSchema = new Schema({
-    quarter: {
+const EconomicActivitySchema = new Schema({
+    activity: {
         type: String,
         required: true
     },
-    jobs: {
+    percentages: {
         type: Number,
         required: true
     }
 });
 
-module.exports = JobGrowth = mongoose.model("jobgrowth", JobGrowthSchema);
+module.exports = EconomicActivity = mongoose.model("economicActivity", EconomicActivitySchema);
