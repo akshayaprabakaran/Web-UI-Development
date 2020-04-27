@@ -13,5 +13,6 @@ connectMongoDB();
 
 // initialize routes
 app.use(require('./routes/jobGrowthRoutes'));
+app.use(require('./routes/loadCSV'));
 
 app.listen(PORT, () => console.log('Server listening on port:', PORT));
