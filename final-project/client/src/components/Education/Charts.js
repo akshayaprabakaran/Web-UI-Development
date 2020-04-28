@@ -7,7 +7,7 @@ import CanvasJSReact from '../../assets/canvasjs.react';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 Highcharts.setOptions({
-    colors: ["#365253", "#5e9a78","#a7ce9f"]
+    colors: ["#365253", "#5e9a78","#a7ce9f","#85a47f","#618685"]
 });
 
 class Charts extends Component {
