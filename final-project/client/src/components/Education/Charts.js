@@ -6,6 +6,9 @@ import HighchartsReact from 'highcharts-react-official'
 import CanvasJSReact from '../../assets/canvasjs.react';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+Highcharts.setOptions({
+    colors: ["#365253", "#5e9a78","#a7ce9f"]
+});
 
 class Charts extends Component {
     constructor(props) {
@@ -380,7 +383,7 @@ for (var i = 0; i < 3; i++) {
                             options={this.state.columnChart} 
                      />
                      </Col>
-                    <Col xs={6}>
+                    <Col xs={12}>
                         {this.renderCombinationChart()}
                         <CanvasJSChart options={this.state.combinationChart} 
                     />
