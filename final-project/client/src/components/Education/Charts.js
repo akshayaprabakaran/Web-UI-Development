@@ -320,14 +320,14 @@ for (var i = 0; i < 3; i++) {
 
                 {/* Columns are always 50% wide, on mobile and desktop */}
                 <Row>
-                    <Col xs={7}>
+                    <Col xs={6}>
                         {this.renderBarChart()}
                         <HighchartsReact
                             highcharts={Highcharts}
                             options={this.state.barChart} 
                     />
                     </Col>
-                    <Col xs={5}  >
+                    <Col xs={6}  >
                          {this.renderColumnChart()}
                          <HighchartsReact
                             highcharts={Highcharts}
