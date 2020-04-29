@@ -12,7 +12,7 @@ import { MDBContainer } from 'mdbreact';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 Highcharts.setOptions({
-    colors: ["#365253", "#618685","#5e9a78","#85a47f","#a7ce9f"]
+    colors: ["#365253", "#618685", "#5e9a78", "#85a47f", "#a7ce9f"]
 });
 
 class Charts extends Component {
@@ -20,8 +20,8 @@ class Charts extends Component {
         super(props);
         this.state = {
             levelData: [],
-            gradData:[],
-            degreeData:[],
+            gradData: [],
+            degreeData: [],
             barChart: {},
             columnChart: {},
             combinationChart: {}
@@ -32,7 +32,7 @@ class Charts extends Component {
         axios
             .get('/dashboard/education')
             .then((res) => {
-                 document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
                 let data = res.data;
                 this.setState({ levelData: data.level });
                 this.setState({ gradData: data.grad });
@@ -44,19 +44,19 @@ class Charts extends Component {
     }
 
     renderBarChart() {
-    
+
         this.state.barChart = {
             chart: {
                 type: 'bar'
             },
             title: {
-               text: "Percentage of Adults by Educational Attainment in 2018",
-                    style: {
-            color: "#365253",
+                text: "Percentage of Adults by Educational Attainment in 2018",
+                style: {
+                    color: "#365253",
                     fontFamily: "Verdana",
                     fontColor: "#365253",
-                    fontWeight:'bold',
-                    fontSize:23
+                    fontWeight: 'bold',
+                    fontSize: 23
                 }
             },
             accessibility: {
@@ -67,21 +67,21 @@ class Charts extends Component {
                     valueSuffix: '%'
                 }
             },
-             xAxis:{
-                visible:false
+            xAxis: {
+                visible: false
             },
-            yAxis:{
+            yAxis: {
                 labels: {
-                            formatter: function() {
-                             return this.value+"%";
-                                                 },
-                        style: {
-                                    fontSize: '15px'
-                            }
-                            },
-                            title: {
-            enabled: false
-        }
+                    formatter: function () {
+                        return this.value + "%";
+                    },
+                    style: {
+                        fontSize: '15px'
+                    }
+                },
+                title: {
+                    enabled: false
+                }
                 // title:{
                 //     text:"Percentage",
                 //     style:{
@@ -95,13 +95,13 @@ class Charts extends Component {
             },
             legend: {
                 itemStyle: {
-            color: '#525252',
-            //fontWeight: 'bold',
-            fontSize:13
-        }
-        },
+                    color: '#525252',
+                    //fontWeight: 'bold',
+                    fontSize: 13
+                }
+            },
             plotOptions: {
-                
+
                 series: {
                     pointWidth: 30,
                     dataLabels: {
@@ -117,7 +117,7 @@ class Charts extends Component {
             series: [
             ]
         }
-       for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 5; i++) {
             this.state.barChart.series.push({ name: '', data: [] });
         }
 
@@ -152,84 +152,85 @@ class Charts extends Component {
     renderColumnChart() {
         //var colors = ['#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'];
         this.state.columnChart = {
-                chart:{
-                    type:'column'
-                },
-                title: {
-                    text: "Rate of Graduation, Share of Graduates Who Meet UC/CSU Requirements, and Dropout Rate",
-                    style: {
-            color: "#365253",
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: "Rate of Graduation, Share of Graduates Who Meet UC/CSU Requirements, and Dropout Rate",
+                style: {
+                    color: "#365253",
                     fontFamily: "Verdana",
                     fontColor: "#365253",
-                    fontWeight:'bold',
-                    fontSize:23
+                    fontWeight: 'bold',
+                    fontSize: 23
                 }
+            },
+            //dataPointWidth: 50,
+            xAxis: {
+                labels: {
+                    align: 'right',
+                    style: {
+                        fontSize: '15px',
+
+                    }
+
                 },
-                //dataPointWidth: 50,
-                xAxis: {
-                    labels:{
-                        align: 'right',
-                        style: {
-                                    fontSize: '15px',
-
-                            }
-
-                    },
-                    categories:[
+                categories: [
                     '2013',
                     '2016',
                     '2019'
-                    ],
-                    crosshair: true
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                opposite: false,
+                labels: {
+                    formatter: function () {
+                        return this.value + "%";
+                    },
+                    style: {
+                        fontSize: '15px'
+                    }
                 },
-                yAxis: {
-                    opposite:false,
-                    labels: {
-                            formatter: function() {
-                             return this.value+"%";
-                                                 },
-                            style: {
-                                    fontSize: '15px'
-                            }
-                        },
-                    min:0,
-                    title: {
-                        enabled:false
+                min: 0,
+                title: {
+                    enabled: false
 
-                        }
-                  
-                
-                },
-                legend: {
+                }
+
+
+            },
+            legend: {
                 itemStyle: {
-            color: '#525252',
-            //fontWeight: 'bold',
-            fontSize:15
-        }
-    },
-                toolTip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    color: '#525252',
+                    //fontWeight: 'bold',
+                    fontSize: 15
+                }
+            },
+            toolTip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
 
+            },
+
+            plotOptions: {
+                series: {
+                    pointWidth: 20
                 },
-        
-                plotOptions:{
-                    series: {
-                    pointWidth: 20},
                 column: {
                     pointPadding: 0.2,
                     borderWidth: 0,
-                    }
-                },
-                
-                series:[]
-            }
-    
-for (var i = 0; i < 3; i++) {
+                }
+            },
+
+            series: []
+        }
+
+        for (var i = 0; i < 3; i++) {
             this.state.columnChart.series.push({ name: '', data: [] });
         }
 
@@ -255,58 +256,58 @@ for (var i = 0; i < 3; i++) {
 
 
     renderCombinationChart() {
-    
+
         this.state.combinationChart = {
-            
-                title: {
-                    text: "Total Science & Engineering Degrees Conferred",
-                    fontFamily: "Verdana",
-                    fontColor: "#365253",
-                    fontWeight:'bold',
-                    fontSize:25
-                },
-                axisX: {
-                    valueFormatString: "'YY",
-                    crosshair: {
-                        enabled: true,
-                        snapToDataPoint: true
-                    }
-                },
-                axisY: 
-                
-                    {
-                    //title: "Number of People",
 
-                    gridThickness:0.5,
-                    crosshair: {
-                        enabled: true,
-                        snapToDataPoint: true
-                        },
-                    },
+            title: {
+                text: "Total Science & Engineering Degrees Conferred",
+                fontFamily: "Verdana",
+                fontColor: "#365253",
+                fontWeight: 'bold',
+                fontSize: 25
+            },
+            axisX: {
+                valueFormatString: "'YY",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            axisY:
 
-                    // axisY1:{
-                    // title: " Axis Y 2 Title",
-                    // },
-                
-                toolTip: {
-                    shared: true,
+            {
+                //title: "Number of People",
+
+                gridThickness: 0.5,
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
                 },
-                legend: {
-                    cursor: "pointer",
-                    verticalAlign: "bottom",
-                    horizontalAlign: "center",
-                    dockInsidePlotArea: false,
-                    fontWeight:'bolder',
-                    fontSize:17
-                },
-                data: [
+            },
+
+            // axisY1:{
+            // title: " Axis Y 2 Title",
+            // },
+
+            toolTip: {
+                shared: true,
+            },
+            legend: {
+                cursor: "pointer",
+                verticalAlign: "bottom",
+                horizontalAlign: "center",
+                dockInsidePlotArea: false,
+                fontWeight: 'bolder',
+                fontSize: 17
+            },
+            data: [
                 {
                     type: "column",
                     axisYType: "primary",
                     name: "Total S&E Degrees Conferred in Silicon Valley",
                     showInLegend: true,
                     markerSize: 0,
-                    color:"#365253",
+                    color: "#365253",
 
                     //lineThickness:2,
                     dataPoints: []
@@ -316,28 +317,28 @@ for (var i = 0; i < 3; i++) {
                     axisYType: "secondary",
                     name: "Silicon Valley Share of Total S&E Degrees Conferred in US(%)",
                     toolTipContent: "{name}:{y}%",
-                    color:"#a7ce9f",
+                    color: "#a7ce9f",
                     markerType: "circle",
-                    markerColor:"#a7ce9f",
-                    markerBorderColor:"#365253",
+                    markerColor: "#a7ce9f",
+                    markerBorderColor: "#365253",
                     markerBorderThickness: 2,
                     showInLegend: true,
                     markerSize: 10,
-                    lineThickness:4,
+                    lineThickness: 4,
                     dataPoints: []
                 }
-                ]
-            };
+            ]
+        };
         return Object.keys(this.state.degreeData).map((i, index) => {
             let years = this.state.degreeData[i].years;
             let Silnumbers = this.state.degreeData[i].Silnumbers;
             let Uspercent = this.state.degreeData[i].Uspercent;
-            this.state.combinationChart.data[0].dataPoints.push({ label: years, y: Silnumbers});
+            this.state.combinationChart.data[0].dataPoints.push({ label: years, y: Silnumbers });
             this.state.combinationChart.data[1].dataPoints.push({ label: years, y: Uspercent });
         });
     };
 
-    
+
 
     render() {
 
@@ -345,38 +346,38 @@ for (var i = 0; i < 3; i++) {
         return (
 
             <Container fluid>
-            <div style ={{display: 'flex',paddingBottom: '30px',paddingTop: '10px', justifyContent: 'center',alignItems:'center'}}>
-  <h1>Silicon Valley - Education!</h1>
-</div>
+                <div style={{ display: 'flex', paddingBottom: '30px', paddingTop: '10px', justifyContent: 'center', alignItems: 'center' }}>
+                    <h1>Silicon Valley - Education!</h1>
+                </div>
 
 
-            <Container>
-            
+                <Container>
 
-                {/* Columns are always 50% wide, on mobile and desktop */}
-                <Row>
-                    <Col xs={6}>
-                        {this.renderBarChart()}
-                        <HighchartsReact
-                            highcharts={Highcharts}
-                            options={this.state.barChart} 
-                    />
-                    </Col>
-                    <Col xs={6}  >
-                         {this.renderColumnChart()}
-                         <HighchartsReact
-                            highcharts={Highcharts}
-                            options={this.state.columnChart} 
-                     />
-                     </Col>
-                    <Col xs={12}style ={{paddingTop: '50px'}} >
-                        {this.renderCombinationChart()}
-                        <CanvasJSChart options={this.state.combinationChart} 
-                    />
-                    </Col>
-                    
-                </Row>
-            </Container>
+
+                    {/* Columns are always 50% wide, on mobile and desktop */}
+                    <Row>
+                        <Col xs={6}>
+                            {this.renderBarChart()}
+                            <HighchartsReact
+                                highcharts={Highcharts}
+                                options={this.state.barChart}
+                            />
+                        </Col>
+                        <Col xs={6}  >
+                            {this.renderColumnChart()}
+                            <HighchartsReact
+                                highcharts={Highcharts}
+                                options={this.state.columnChart}
+                            />
+                        </Col>
+                        <Col xs={12} style={{ paddingTop: '50px' }} >
+                            {this.renderCombinationChart()}
+                            <CanvasJSChart options={this.state.combinationChart}
+                            />
+                        </Col>
+
+                    </Row>
+                </Container>
             </Container>
         );
     }
