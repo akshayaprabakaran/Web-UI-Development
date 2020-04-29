@@ -70,7 +70,16 @@ class Charts extends Component {
                 visible:false
             },
             yAxis:{
-                visible:false
+                title:{
+                    text:"Percentage",
+                    style:{
+                            fontSize:17,
+                            color:"#000000",
+                            fontFamily: "Verdana"
+                        },
+                },
+                visible:true,
+                max:30
             },
             legend: {
                 itemStyle: {
