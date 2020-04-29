@@ -7,11 +7,12 @@ const EconomicActivity = require('./../models/Employment/EconomicActivity');
 const Level = require('./../models/Education/Level');
 const Grad = require('./../models/Education/Grad');
 const Degree = require('./../models/Education/Degree');
-
+const TechGrowth = require('./../models/Employment/TechGrowth');
 
 convertCSVtoJSON(__dirname + '/../csvData/Employment/totalJobGrowth.csv', 'totalJobGrowthModel');
 convertCSVtoJSON(__dirname + '/../csvData/Employment/relativeJobGrowth.csv', 'relativeJobGrowthModel');
 convertCSVtoJSON(__dirname + '/../csvData/Employment/economicActivity.csv', 'economicActivityModel');
+convertCSVtoJSON(__dirname + '/../csvData/Employment/techGrowth.csv', 'techGrowthModel');
 convertCSVtoJSON(__dirname + '/../csvData/Education/level.csv', 'levelModel');
 convertCSVtoJSON(__dirname + '/../csvData/Education/grad.csv', 'gradModel');
 convertCSVtoJSON(__dirname + '/../csvData/Education/degree.csv', 'degreeModel');
@@ -27,6 +28,7 @@ async function loadCSV(csvData, modelName) {
    let totalJobGrowthQuery = TotalJobGrowth.find({});
    let relativeJobGrowthQuery = RelativeJobGrowth.find({});
    let economicActivityQuery = EconomicActivity.find({});
+   let techGrowthQuery = TechGrowth.find({});
    let levelQuery = Level.find({});
    let gradQuery = Grad.find({});
    let degreeQuery = Degree.find({});
@@ -46,6 +48,12 @@ async function loadCSV(csvData, modelName) {
          break;
       case 'economicActivityModel':
          economicActivityQuery.exec(function (err, modelData) {
+            if (err) throw err;
+            else saveData(modelData, csvData, modelName);
+         })
+         break;
+      case 'techGrowthModel':
+         techGrowthQuery.exec(function (err, modelData) {
             if (err) throw err;
             else saveData(modelData, csvData, modelName);
          })
@@ -87,6 +95,9 @@ async function saveData(modelData, csvData, modelName) {
             case 'economicActivityModel':
                dataSet = new EconomicActivity({ activity: obj.Activity, percentages: obj.Percentages });
                break;
+            case 'techGrowthModel':
+               dataSet = new TechGrowth({ jobs: obj.Jobs, city: obj.City });
+               break;
             case 'levelModel':
                dataSet = new Level({ level: obj.Level, percentage: parseFloat(obj.Percentage)});
                break;
@@ -96,7 +107,6 @@ async function saveData(modelData, csvData, modelName) {
             case 'degreeModel':
                dataSet = new Degree({ years: obj.Years, Silnumbers: parseInt(obj.SilNumbers), Uspercent: parseFloat(obj.UsPercent)});
                break;
-
          }
          dataSet.save((err, res) => {
             if (err) throw err;
