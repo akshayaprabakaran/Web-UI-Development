@@ -51,8 +51,7 @@ class Charts extends Component {
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
-                dockInsidePlotArea: true,
-                itemclick: toogleDataSeries
+                dockInsidePlotArea: true,                
             },
             data: [{
                 type: "line",
@@ -104,7 +103,40 @@ class Charts extends Component {
             }
             ]
         };
+        return Object.keys(this.state.earlyStartupData).map((i, index) => {
+            let years = this.state.earlyStartupData[i].years;
+            let CAnumbers = this.earlyStartupData[i].CAnumbers;
+            let SFnumbers = this.earlyStartupData[i].SFnumbers;
+            let SVnumbers = this.earlyStartupData[i].SVnumbers;
+            let CAEarly = this.state.earlyStartupData[i].CAEarly;
+            let SFEarly = this.state.earlyStartupData[i].SFEarly;
+            let SVEarly = this.state.earlyStartupData[i].SVEarly;
+
+            // push to chart
+            this.state.lineChart.data[0].dataPoints.push({ label: years, y: CAnumbers });
+            this.state.lineChart.data[1].dataPoints.push({ label: years, y: SFnumbers });
+            this.state.lineChart.data[2].dataPoints.push({ label: years, y: SVnumbers });
+            this.state.lineChart.data[3].dataPoints.push({ label: years, y: CAEarly });
+            this.state.lineChart.data[4].dataPoints.push({ label: years, y: SFEarly });
+            this.state.lineChart.data[5].dataPoints.push({ label: years, y: SVEarly });
+        });
+
         
+    }
+
+    render(){
+        return (
+            <Container fluid>
+                {/* Columns are always 50% wide, on mobile and desktop */}
+                <Row>
+                    <Col xs={6}>
+                        {this.renderLineChart()}
+                        <CanvasJSChart options={this.state.lineChart} />
+                    </Col>
+                    
+                </Row>
+            </Container>
+        );
     }
 }
 
