@@ -41,7 +41,14 @@ class Charts extends Component {
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Total Number of Jobs and Percent Change (2001-2019)"
+                text: "Total Number of Jobs and Percent Change (2001-2019)",
+                style: {
+                    color: "#365253",
+                    fontFamily: "Verdana",
+                    fontColor: "#365253",
+                    fontWeight: 'bold',
+                    fontSize: 23
+                }
             },
             axisY: {
                 title: "Total Number of Jobs",
@@ -65,7 +72,7 @@ class Charts extends Component {
                 name: "Total Jobs",
                 markerType: "square",
                 xValueFormatString: "Q#, YYYY",
-                color: "#F08080",
+                color: "#365253",
                 dataPoints: []
             }]
         };
@@ -83,7 +90,14 @@ class Charts extends Component {
                 type: 'pie'
             },
             title: {
-                text: 'Major Areas Of Economic Activity'
+                text: 'Major Areas Of Economic Activity: Silicon Valley & San Francisco (2019)',
+                style: {
+                    color: "#365253",
+                    fontFamily: "Verdana",
+                    fontColor: "#365253",
+                    fontWeight: 'bold',
+                    fontSize: 23
+                }
             },
             accessibility: {
                 announceNewData: {
@@ -126,7 +140,14 @@ class Charts extends Component {
                 type: 'bar'
             },
             title: {
-                text: 'Relative Job Growth'
+                text: 'Relative Job Growth (2007 - 2019)',
+                style: {
+                    color: "#365253",
+                    fontFamily: "Verdana",
+                    fontColor: "#365253",
+                    fontWeight: 'bold',
+                    fontSize: 23
+                }
             },
             xAxis: {
                 categories: ['2007 - 2019', '2010 - 2019', '2018 - 2019'],
@@ -195,13 +216,22 @@ class Charts extends Component {
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Growth of Tech Talent in Top U.S. Tech Talent Centers (2013-2018)"
+                text: "Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)",
+                style: {
+                    color: "#365253",
+                    fontFamily: "Verdana",
+                    fontColor: "#365253",
+                    fontWeight: 'bold',
+                    fontSize: 23
+                }
             },
             axisY: {
                 title: "Number of New Tech Jobs (thousands)"
             },
             data: [{
                 type: "column",
+                markerSize: 0,
+                color: "#365253",
                 dataPoints: []
             }]
         }
@@ -215,6 +245,9 @@ class Charts extends Component {
     render() {
         return (
             <Container fluid>
+                <div style={{ display: 'flex', paddingBottom: '30px', paddingTop: '10px', justifyContent: 'center', alignItems: 'center' }}>
+                    <h1>Silicon Valley - Employment!</h1>
+                </div>
                 {/* Columns are always 50% wide, on mobile and desktop */}
                 <Row>
                     <Col xs={6}>
