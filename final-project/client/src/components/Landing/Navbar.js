@@ -36,7 +36,7 @@ class Landing extends Component {
                                 <NavLink tag={Link} to="/employment">Employment</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/">StartUp</NavLink>
+                                <NavLink tag={Link} to="/startup">StartUp</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={Link} to="/education">Education</NavLink>

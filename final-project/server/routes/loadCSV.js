@@ -9,6 +9,8 @@ const Grad = require('./../models/Education/Grad');
 const Degree = require('./../models/Education/Degree');
 const TechGrowth = require('./../models/Employment/TechGrowth');
 
+const EarlyStartups = require('./../models/Startups/Early');
+
 convertCSVtoJSON(__dirname + '/../csvData/Employment/totalJobGrowth.csv', 'totalJobGrowthModel');
 convertCSVtoJSON(__dirname + '/../csvData/Employment/relativeJobGrowth.csv', 'relativeJobGrowthModel');
 convertCSVtoJSON(__dirname + '/../csvData/Employment/economicActivity.csv', 'economicActivityModel');
@@ -16,6 +18,8 @@ convertCSVtoJSON(__dirname + '/../csvData/Employment/techGrowth.csv', 'techGrowt
 convertCSVtoJSON(__dirname + '/../csvData/Education/level.csv', 'levelModel');
 convertCSVtoJSON(__dirname + '/../csvData/Education/grad.csv', 'gradModel');
 convertCSVtoJSON(__dirname + '/../csvData/Education/degree.csv', 'degreeModel');
+
+convertCSVtoJSON(__dirname + '/../csvData/Startups/early.csv', 'earlyModel');
 
 async function convertCSVtoJSON(dir, modelName) {
    csvtojson().fromFile(dir).then(csvData => {
@@ -32,6 +36,7 @@ async function loadCSV(csvData, modelName) {
    let levelQuery = Level.find({});
    let gradQuery = Grad.find({});
    let degreeQuery = Degree.find({});
+   let earlyQuery = EarlyStartups.find({});
 
    switch (modelName) {
       case 'totalJobGrowthModel':
@@ -76,6 +81,12 @@ async function loadCSV(csvData, modelName) {
             else saveData(modelData, csvData, modelName);
          })
          break;
+      case 'earlyModel':
+         earlyQuery.exec(function (err, modelData){
+            if(err) throw err;
+            else saveData(modelData, csvData, modelName);
+         });
+         break;
    }
 }
 
@@ -106,6 +117,10 @@ async function saveData(modelData, csvData, modelName) {
                break;
             case 'degreeModel':
                dataSet = new Degree({ years: obj.Years, Silnumbers: parseInt(obj.SilNumbers), Uspercent: parseFloat(obj.UsPercent)});
+               break;
+            case 'earlyModel':
+               dataSet = new EarlyStartups({ years: obj.Years, CAnumbers: parseInt(obj.CANumbers), SFnumbers: parseInt(obj.SFNumbers), SVnumbers: parseInt(obj.SVNumbers),
+                  CAEarly:   parseInt(obj.CAEarly),   SFEarly: parseInt(obj.SFEarly),     SVEarly: parseInt(obj.SVEarly)});
                break;
          }
          dataSet.save((err, res) => {
