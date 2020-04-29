@@ -6,23 +6,7 @@ const LevelSchema = new Schema({
         type: String,
         required: true
     },
-    Less: {
-        type: Number,
-        required: true
-    },
-    High: {
-        type: Number,
-        required: true
-    },
-    Some: {
-        type: Number,
-        required: true
-    },
-    Bach: {
-        type: Number,
-        required: true
-    },
-    Grad: {
+    percentage: {
         type: Number,
         required: true
     }
