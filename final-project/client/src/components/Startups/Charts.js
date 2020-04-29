@@ -19,6 +19,7 @@ class Charts extends Component {
             .then((res) => {
                 var data = res.data;
                 this.setState({ earlyStartupData: data.earlyStartup });
+                console.log(this.state.earlyStartupData);
             })
             .catch((error) => {
                 console.log(error);
@@ -105,9 +106,9 @@ class Charts extends Component {
         };
         return Object.keys(this.state.earlyStartupData).map((i, index) => {
             let years = this.state.earlyStartupData[i].years;
-            let CAnumbers = this.earlyStartupData[i].CAnumbers;
-            let SFnumbers = this.earlyStartupData[i].SFnumbers;
-            let SVnumbers = this.earlyStartupData[i].SVnumbers;
+            let CAnumbers = this.state.earlyStartupData[i].CAnumbers;
+            let SFnumbers = this.state.earlyStartupData[i].SFnumbers;
+            let SVnumbers = this.state.earlyStartupData[i].SVnumbers;
             let CAEarly = this.state.earlyStartupData[i].CAEarly;
             let SFEarly = this.state.earlyStartupData[i].SFEarly;
             let SVEarly = this.state.earlyStartupData[i].SVEarly;
