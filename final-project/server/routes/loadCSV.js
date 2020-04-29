@@ -88,7 +88,7 @@ async function saveData(modelData, csvData, modelName) {
                dataSet = new EconomicActivity({ activity: obj.Activity, percentages: obj.Percentages });
                break;
             case 'levelModel':
-               dataSet = new Level({ level: obj.Level, Less: parseFloat(obj.LessThanHigh), High: parseFloat(obj.HighGraduate),Some: parseFloat(obj.AssociatesDegree),Bach: parseFloat(obj.BachelorsDegree),Grad: parseFloat(obj.GraduateDegree)});
+               dataSet = new Level({ level: obj.Level, percentage: parseFloat(obj.Percentage)});
                break;
             case 'gradModel':
                dataSet = new Grad({ year: obj.Year, rate: obj.Rate, percentages: obj.Percentages });
