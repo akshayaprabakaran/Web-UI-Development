@@ -252,7 +252,8 @@ for (var i = 0; i < 3; i++) {
                     verticalAlign: "bottom",
                     horizontalAlign: "center",
                     dockInsidePlotArea: false,
-                    //itemclick: toogleDataSeries
+                    fontWeight:'bolder',
+                    fontSize:20
                 },
                 data: [
                 {
