@@ -18,12 +18,15 @@ class Landing extends Component {
     }
 
     render() {
+        
         return (
+
             <div>
+            
                 <Navbar color="light" light expand="md">
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink tag={Link} to="/">Home</NavLink>
+                            <NavLink tag={Link} to="/home">Home</NavLink>
                         </NavItem>
                     </Nav>
                     <NavbarToggler onClick={this.toggle} />
@@ -39,13 +42,14 @@ class Landing extends Component {
                                 <NavLink tag={Link} to="/education">Education</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/">Etc</NavLink>
+                                <NavLink tag={Link} to="//">Etc</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div >
-        )
+                </div>
+)
+
     }
 }
 
