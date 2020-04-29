@@ -50,11 +50,12 @@ class Charts extends Component {
                 type: 'bar'
             },
             title: {
-               text: "Percentage of Adults by Educational Attainment",
+               text: "Percentage of Adults by Educational Attainment in 2018",
                     style: {
             color: "#365253",
                     fontFamily: "Verdana",
                     fontColor: "#365253",
+                    fontWeight:'bold',
                     fontSize:23
                 }
             },
@@ -70,22 +71,33 @@ class Charts extends Component {
                 visible:false
             },
             yAxis:{
-                title:{
-                    text:"Percentage",
-                    style:{
-                            fontSize:17,
-                            color:"#000000",
-                            fontFamily: "Verdana"
-                        },
-                },
-                visible:true,
-                max:30
+                labels: {
+                            formatter: function() {
+                             return this.value+"%";
+                                                 },
+                        style: {
+                                    fontSize: '15px'
+                            }
+                            },
+                            title: {
+            enabled: false
+        }
+                // title:{
+                //     text:"Percentage",
+                //     style:{
+                //             fontSize:17,
+                //             color:"#000000",
+                //             fontFamily: "Verdana"
+                //         },
+                //},
+                //visible:true,
+                //max:30
             },
             legend: {
                 itemStyle: {
-            color: '#000000',
-            fontWeight: 'bold',
-            fontSize:15
+            color: '#525252',
+            //fontWeight: 'bold',
+            fontSize:13
         }
         },
             plotOptions: {
@@ -144,16 +156,25 @@ class Charts extends Component {
                     type:'column'
                 },
                 title: {
-                    text: "Percentage Growth of Graduation Rate",
+                    text: "Rate of Graduation, Share of Graduates Who Meet UC/CSU Requirements, and Dropout Rate",
                     style: {
             color: "#365253",
                     fontFamily: "Verdana",
                     fontColor: "#365253",
+                    fontWeight:'bold',
                     fontSize:23
                 }
                 },
                 //dataPointWidth: 50,
                 xAxis: {
+                    labels:{
+                        align: 'right',
+                        style: {
+                                    fontSize: '15px',
+
+                            }
+
+                    },
                     categories:[
                     '2013',
                     '2016',
@@ -162,22 +183,27 @@ class Charts extends Component {
                     crosshair: true
                 },
                 yAxis: {
+                    opposite:false,
+                    labels: {
+                            formatter: function() {
+                             return this.value+"%";
+                                                 },
+                            style: {
+                                    fontSize: '15px'
+                            }
+                        },
                     min:0,
                     title: {
-                        text:"Percentage",
-                        style:{
-                            fontSize:17,
-                            color:"#000000",
-                            fontFamily: "Verdana"
+                        enabled:false
 
                         }
                   
-                }
+                
                 },
                 legend: {
                 itemStyle: {
-            color: '#000000',
-            fontWeight: 'bold',
+            color: '#525252',
+            //fontWeight: 'bold',
             fontSize:15
         }
     },
@@ -211,15 +237,15 @@ for (var i = 0; i < 3; i++) {
             let rate = this.state.gradData[i].rate;
             let percentages = this.state.gradData[i].percentages;
             switch (rate) {
-                case 'Graduation':
+                case 'Graduation Rates':
                     this.state.columnChart.series[0].name = rate;
                     this.state.columnChart.series[0].data.push(percentages);
                     break;
-                case 'CSUandUC':
+                case '% of Graduates Meeting CSU/UC Requirements':
                     this.state.columnChart.series[1].name = rate;
                     this.state.columnChart.series[1].data.push(percentages);
                     break;
-                case 'Dropout':
+                case 'Dropout Rates':
                     this.state.columnChart.series[2].name = rate;
                     this.state.columnChart.series[2].data.push(percentages);
                     break;
@@ -233,9 +259,10 @@ for (var i = 0; i < 3; i++) {
         this.state.combinationChart = {
             
                 title: {
-                    text: "Growth of Science & Engineering Degrees (Yearly)",
+                    text: "Total Science & Engineering Degrees Conferred",
                     fontFamily: "Verdana",
                     fontColor: "#365253",
+                    fontWeight:'bold',
                     fontSize:25
                 },
                 axisX: {
@@ -245,14 +272,22 @@ for (var i = 0; i < 3; i++) {
                         snapToDataPoint: true
                     }
                 },
-                axisY: {
-                    title: "Number of People",
+                axisY: 
+                
+                    {
+                    //title: "Number of People",
+
                     gridThickness:0.5,
                     crosshair: {
                         enabled: true,
                         snapToDataPoint: true
-                    }
-                },
+                        },
+                    },
+
+                    // axisY1:{
+                    // title: " Axis Y 2 Title",
+                    // },
+                
                 toolTip: {
                     shared: true,
                 },
@@ -262,13 +297,13 @@ for (var i = 0; i < 3; i++) {
                     horizontalAlign: "center",
                     dockInsidePlotArea: false,
                     fontWeight:'bolder',
-                    fontSize:20
+                    fontSize:17
                 },
                 data: [
                 {
                     type: "column",
                     axisYType: "primary",
-                    name: "Degree-Silicon Valley",
+                    name: "Total S&E Degrees Conferred in Silicon Valley",
                     showInLegend: true,
                     markerSize: 0,
                     color:"#365253",
@@ -279,7 +314,7 @@ for (var i = 0; i < 3; i++) {
                 {
                     type: "spline",
                     axisYType: "secondary",
-                    name: "US Degree Percentage",
+                    name: "Silicon Valley Share of Total S&E Degrees Conferred in US(%)",
                     toolTipContent: "{name}:{y}%",
                     color:"#a7ce9f",
                     markerType: "circle",
@@ -297,7 +332,7 @@ for (var i = 0; i < 3; i++) {
             let years = this.state.degreeData[i].years;
             let Silnumbers = this.state.degreeData[i].Silnumbers;
             let Uspercent = this.state.degreeData[i].Uspercent;
-            this.state.combinationChart.data[0].dataPoints.push({ label: years, y: Silnumbers });
+            this.state.combinationChart.data[0].dataPoints.push({ label: years, y: Silnumbers});
             this.state.combinationChart.data[1].dataPoints.push({ label: years, y: Uspercent });
         });
     };
