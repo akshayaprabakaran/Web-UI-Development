@@ -10,7 +10,9 @@ class Charts extends Component {
         super(props);
         this.state = {
             earlyStartupData: [],
-            lineChart: {}
+            lineChart: {},
+            womenData: [],
+            womenLineChart: {}
         };
     }
 
@@ -20,6 +22,8 @@ class Charts extends Component {
                 var data = res.data;
                 this.setState({ earlyStartupData: data.earlyStartup });
                 console.log(this.state.earlyStartupData);
+                this.setState({womenData: data.women})
+                console.log(this.state.womenData);
             })
             .catch((error) => {
                 console.log(error);
@@ -114,14 +118,85 @@ class Charts extends Component {
             let SVEarly = this.state.earlyStartupData[i].SVEarly;
 
             // push to chart
-            this.state.lineChart.data[0].dataPoints.push({ label: years, y: CAnumbers });
-            this.state.lineChart.data[1].dataPoints.push({ label: years, y: SFnumbers });
-            this.state.lineChart.data[2].dataPoints.push({ label: years, y: SVnumbers });
-            this.state.lineChart.data[3].dataPoints.push({ label: years, y: CAEarly });
-            this.state.lineChart.data[4].dataPoints.push({ label: years, y: SFEarly });
-            this.state.lineChart.data[5].dataPoints.push({ label: years, y: SVEarly });
+            this.state.lineChart.data[0].dataPoints.push({ label: years, y: SFnumbers});
+            this.state.lineChart.data[1].dataPoints.push({ label: years, y: SVnumbers });
+            this.state.lineChart.data[2].dataPoints.push({ label: years, y: CAnumbers });
+            this.state.lineChart.data[3].dataPoints.push({ label: years, y: SFEarly });
+            this.state.lineChart.data[4].dataPoints.push({ label: years, y: SVEarly });
+            this.state.lineChart.data[5].dataPoints.push({ label: years, y: CAEarly });
         });
 
+        
+    }
+
+    renderWomenLineChart(){
+        this.state.womenLineChart = {
+            title: {
+                text: "Share of Startups founded by Women"
+            },
+            axisX: {
+                valueFormatString: "'YY",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            axisY2: {
+                title: "Silicon Valley and San Francisco",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+                verticalAlign: "top",
+                horizontalAlign: "center",
+                dockInsidePlotArea: true,                
+            },
+            data: [{
+                type: "line",
+                axisYType: "secondary",
+                name: "Total of Number Startups - Silicon Valley",
+                showInLegend: true,
+                markerSize: 0,
+                dataPoints: []
+            },
+            {
+                type: "line",
+                axisYType: "secondary",
+                name: "Total of Number Startups - San Francisco",
+                showInLegend: true,
+                markerSize: 0,
+                dataPoints: []
+            },
+            {
+                type: "line",
+                axisYType: "secondary",
+                name: "Total of Number Startups - California",
+                showInLegend: true,
+                markerSize: 0,
+                dataPoints: []
+            }
+            
+            ]
+        };
+        return Object.keys(this.state.womenData).map((i, index) => {
+            let years = this.state.earlyStartupData[i].years;
+            let CA = this.state.womenData[i].CA;
+            let SF = this.state.womenData[i].SF;
+            let SV = this.state.womenData[i].SV;
+            
+
+            // push to chart
+            this.state.womenLineChart.data[0].dataPoints.push({ label: years, y: SF});
+            this.state.womenLineChart.data[1].dataPoints.push({ label: years, y: SV });
+            this.state.womenLineChart.data[2].dataPoints.push({ label: years, y: CA });
+           
+        });
         
     }
 
@@ -134,7 +209,10 @@ class Charts extends Component {
                         {this.renderLineChart()}
                         <CanvasJSChart options={this.state.lineChart} />
                     </Col>
-                    
+                    <Col xs={6}>
+                        {this.renderWomenLineChart()}
+                        <CanvasJSChart options={this.state.womenLineChart} />
+                    </Col>
                 </Row>
             </Container>
         );
