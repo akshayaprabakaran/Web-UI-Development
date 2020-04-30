@@ -33,7 +33,7 @@ class Charts extends Component {
     renderLineChart() {
         this.state.lineChart = {
             title: {
-                text: ""
+                text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
             },
             axisX: {
                 valueFormatString: "'YY",
@@ -135,7 +135,7 @@ class Charts extends Component {
                 text: "Share of Startups founded by Women"
             },
             axisX: {
-                valueFormatString: "'YY",
+                valueFormatString: "YYYY",
                 crosshair: {
                     enabled: true,
                     snapToDataPoint: true
@@ -143,6 +143,7 @@ class Charts extends Component {
             },
             axisY2: {
                 title: "Silicon Valley and San Francisco",
+                suffix: "%",
                 crosshair: {
                     enabled: true,
                     snapToDataPoint: true
@@ -162,6 +163,7 @@ class Charts extends Component {
                 axisYType: "secondary",
                 name: "Total of Number Startups - Silicon Valley",
                 showInLegend: true,
+                yValueFormatString : "#'%'",
                 markerSize: 0,
                 dataPoints: []
             },
@@ -170,6 +172,7 @@ class Charts extends Component {
                 axisYType: "secondary",
                 name: "Total of Number Startups - San Francisco",
                 showInLegend: true,
+                yValueFormatString : "#'%'",
                 markerSize: 0,
                 dataPoints: []
             },
@@ -177,6 +180,7 @@ class Charts extends Component {
                 type: "line",
                 axisYType: "secondary",
                 name: "Total of Number Startups - California",
+                yValueFormatString : "#'%'",
                 showInLegend: true,
                 markerSize: 0,
                 dataPoints: []
@@ -185,7 +189,7 @@ class Charts extends Component {
             ]
         };
         return Object.keys(this.state.womenData).map((i, index) => {
-            let years = this.state.earlyStartupData[i].years;
+            let years = this.state.womenData[i].years;
             let CA = this.state.womenData[i].CA;
             let SF = this.state.womenData[i].SF;
             let SV = this.state.womenData[i].SV;
@@ -209,7 +213,7 @@ class Charts extends Component {
                 <Row>
                     <div class="col-sm-12">
                         <div class="card m-4">
-                            <h5 class="card-header text-center">Number of Seed or Early-Stage Startups, and Total Number of Startup Companies</h5>
+                            
                             <div class="card-body">
                                 {this.renderLineChart()}
                                 <CanvasJSChart options={this.state.lineChart} />
@@ -218,7 +222,7 @@ class Charts extends Component {
                     </div>
                     <div class="col-sm-12">
                         <div class="card m-4">
-                            <h5 class="card-header text-center">Number of Seed or Early-Stage Startups, and Total Number of Startup Companies</h5>
+                            
                             <div class="card-body">
                             {this.renderWomenLineChart()}
                         <CanvasJSChart options={this.state.womenLineChart} />
