@@ -12,7 +12,9 @@ class Charts extends Component {
             earlyStartupData: [],
             lineChart: {},
             womenData: [],
-            womenLineChart: {}
+            womenLineChart: {},
+            fundingData: [],
+            fundingLineChart: {},
         };
     }
 
@@ -24,6 +26,8 @@ class Charts extends Component {
                 console.log(this.state.earlyStartupData);
                 this.setState({ womenData: data.women })
                 console.log(this.state.womenData);
+                this.setState({ fundingData: data.funding });
+                console.log(this.state.fundingData);
             })
             .catch((error) => {
                 console.log(error);
@@ -32,10 +36,11 @@ class Charts extends Component {
 
     renderLineChart() {
         this.state.lineChart = {
+            zoomEnabled: true,
             title: {
-                text: ""
+                text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
             },
-            height : "250",
+            height: "250",
             axisX: {
                 valueFormatString: "'YY",
                 crosshair: {
@@ -44,7 +49,6 @@ class Charts extends Component {
                 }
             },
             axisY2: {
-                title: "Silicon Valley and San Francisco",
                 crosshair: {
                     enabled: true,
                     snapToDataPoint: true
@@ -66,6 +70,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#91a2a3",
+                yValueFormatString: "# companies",
                 dataPoints: []
             },
             {
@@ -75,6 +80,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#6ca0a3",
+                yValueFormatString: "# companies",
                 dataPoints: []
             },
             {
@@ -84,6 +90,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#7ce5eb",
+                yValueFormatString: "# companies",
                 dataPoints: []
             },
             {
@@ -93,6 +100,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#55accf",
+                yValueFormatString: "# companies",
                 dataPoints: []
             },
             {
@@ -102,6 +110,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#662fde",
+                yValueFormatString: "# companies",
                 dataPoints: []
             },
             {
@@ -111,6 +120,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#0769f2",
+                yValueFormatString: "# companies",
                 dataPoints: []
             }
             ]
@@ -139,9 +149,9 @@ class Charts extends Component {
     renderWomenLineChart() {
         this.state.womenLineChart = {
             title: {
-                text: ""
+                text: "Share of Startups founded by Women"
             },
-            height : "250",
+            height: "250",
             axisX: {
                 valueFormatString: "YYYY",
                 crosshair: {
@@ -150,7 +160,6 @@ class Charts extends Component {
                 }
             },
             axisY2: {
-                title: "Silicon Valley and San Francisco",
                 suffix: "%",
                 crosshair: {
                     enabled: true,
@@ -215,32 +224,106 @@ class Charts extends Component {
 
     }
 
+    renderFundingLineChart() {
+        this.state.fundingLineChart = {
+            title: {
+                text: "Seed or Early-Stage Funding Deals"
+            },
+            height: "250",
+            axisX: {
+                valueFormatString: "YYYY",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            axisY2: {
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+                verticalAlign: "top",
+                horizontalAlign: "center",
+                dockInsidePlotArea: true,
+            },
+            data: [{
+                type: "line",
+                axisYType: "secondary",
+                name: "Total of Number Startups - Silicon Valley",
+                showInLegend: true,
+                yValueFormatString: "# companies",
+                markerSize: 0,
+                color: "#0769f2",
+                dataPoints: []
+            },
+            {
+                type: "line",
+                axisYType: "secondary",
+                name: "Total of Number Startups - San Francisco",
+                showInLegend: true,
+                yValueFormatString: "# companies",
+                markerSize: 0,
+                color: "#55accf",
+                dataPoints: []
+            },
+
+
+            ]
+        };
+        return Object.keys(this.state.fundingData).map((i, index) => {
+            let years = this.state.fundingData[i].years;
+            let SV = this.state.fundingData[i].SV;
+            let SF = this.state.fundingData[i].SF;
+
+
+            // push to chart
+            this.state.fundingLineChart.data[0].dataPoints.push({ label: years, y: SF });
+            this.state.fundingLineChart.data[1].dataPoints.push({ label: years, y: SV });
+
+        });
+    }
+
     render() {
         return (
+            
+
             <Container>
                 <div class="text-center">
-                    <h3>Startup Companies in Silicon Valley</h3>
+                    <h3 style={{ fontColor: '#365253' }} >Education in Silicon Valley</h3>
                 </div>
                 <Row>
-                    <div class="col-sm-12">
-                        <div class="card m-1">
-                        <h6 class="card-header text-center">Share of Startups founded by Women</h6>
+                    <div class="col-sm-6">
+                        <div class="card">
                             <div class="card-body">
                                 {this.renderWomenLineChart()}
                                 <CanvasJSChart options={this.state.womenLineChart} />
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                {this.renderFundingLineChart()}
+                                <CanvasJSChart options={this.state.fundingLineChart} />
+                            </div>
+                        </div>
+                    </div>
+                </Row>
+                <Row>
                     <div class="col-sm-12">
-                        <div class="card m-1">
-                        <h6 class="card-header text-center">Number of Seed or Early-Stage Startups, and Total Number of Startup Companies</h6>
+                        <div class="card">
                             <div class="card-body">
                                 {this.renderLineChart()}
                                 <CanvasJSChart options={this.state.lineChart} />
                             </div>
                         </div>
                     </div>
-
                 </Row>
             </Container>
         );

@@ -48,7 +48,7 @@ class Charts extends Component {
         this.state.barChart = {
             chart: {
                 type: 'bar',
-                height : "250px"
+                height: "250px"
             },
             title: {
                 text: "",
@@ -155,7 +155,7 @@ class Charts extends Component {
         this.state.columnChart = {
             chart: {
                 type: 'column',
-                height : "250px"
+                height: "250px"
             },
             title: {
                 text: "",
@@ -349,24 +349,24 @@ class Charts extends Component {
 
             <Container>
                 <div class="text-center">
-                    <h3 style={{fontColor:'#365253'}} >Education in Silicon Valley</h3>
+                    <h3 style={{ fontColor: '#365253' }} >Education in Silicon Valley</h3>
                 </div>
                 <Row>
                     <div class="col-sm-6">
                         <div class="card">
-                            <h6 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253' }}>Percentage of Adults by Educational Attainment in 2018</h6>
+                            <h6 class="card-header text-center" style={{ fontWeight: 'bold', fontColor: '#365253' }}>Percentage of Adults by Educational Attainment in 2018</h6>
                             <div class="card-body">
-                            {this.renderBarChart()}
-                            <HighchartsReact highcharts={Highcharts} options={this.state.barChart}/>
+                                {this.renderBarChart()}
+                                <HighchartsReact highcharts={Highcharts} options={this.state.barChart} />
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="card">
-                            <h6 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253'}}>Rate of Graduation, Graduates Meeting UC/CSU Requirements & Dropout Rate</h6>
+                            <h6 class="card-header text-center" style={{ fontWeight: 'bold', fontColor: '#365253' }}>Rate of Graduation, Graduates Meeting UC/CSU Requirements & Dropout Rate</h6>
                             <div class="card-body">
-                            {this.renderColumnChart()}
-                            <HighchartsReact highcharts={Highcharts} options={this.state.columnChart}/>
+                                {this.renderColumnChart()}
+                                <HighchartsReact highcharts={Highcharts} options={this.state.columnChart} />
                             </div>
                         </div>
                     </div>
@@ -374,15 +374,15 @@ class Charts extends Component {
                 <Row>
                     <div class="col-sm-12">
                         <div class="card">
-                            <h6 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253'}}>Total Science and Engineering Degrees Conferred</h6>
+                            <h6 class="card-header text-center" style={{ fontWeight: 'bold', fontColor: '#365253' }}>Total Science and Engineering Degrees Conferred</h6>
                             <div class="card-body">
-                            {this.renderCombinationChart()}
-                                <CanvasJSChart options={this.state.combinationChart}/>
+                                {this.renderCombinationChart()}
+                                <CanvasJSChart options={this.state.combinationChart} />
                             </div>
                         </div>
                     </div>
                 </Row>
-                </Container>
+            </Container>
         );
     }
 }
