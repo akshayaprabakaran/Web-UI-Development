@@ -257,7 +257,7 @@ class Charts extends Component {
                 axisYType: "secondary",
                 name: "Total of Number Startups - Silicon Valley",
                 showInLegend: true,
-                yValueFormatString: "# companies",
+                yValueFormatString: "# deals",
                 markerSize: 0,
                 color: "#0769f2",
                 dataPoints: []
@@ -267,7 +267,7 @@ class Charts extends Component {
                 axisYType: "secondary",
                 name: "Total of Number Startups - San Francisco",
                 showInLegend: true,
-                yValueFormatString: "# companies",
+                yValueFormatString: "# deals",
                 markerSize: 0,
                 color: "#55accf",
                 dataPoints: []
