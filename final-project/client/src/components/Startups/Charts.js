@@ -65,6 +65,7 @@ class Charts extends Component {
                 name: "Total of Number Startups - San Francisco",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#91a2a3",
                 dataPoints: []
             },
             {
@@ -73,6 +74,7 @@ class Charts extends Component {
                 name: "Total of Number Startups - Silicon Valley",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#6ca0a3",
                 dataPoints: []
             },
             {
@@ -81,6 +83,7 @@ class Charts extends Component {
                 name: "Total of Number Startups - California",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#7ce5eb",
                 dataPoints: []
             },
             {
@@ -89,6 +92,7 @@ class Charts extends Component {
                 name: "Seed or Early-Stage Startups - San Francisco",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#55accf",
                 dataPoints: []
             },
             {
@@ -97,6 +101,7 @@ class Charts extends Component {
                 name: "Seed or Early-Stage Startups - Silicon Valley",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#662fde",
                 dataPoints: []
             },
             {
@@ -105,6 +110,7 @@ class Charts extends Component {
                 name: "Seed or Early-Stage Startups - California",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#0769f2",
                 dataPoints: []
             }
             ]
@@ -167,6 +173,7 @@ class Charts extends Component {
                 showInLegend: true,
                 yValueFormatString: "#'%'",
                 markerSize: 0,
+                color: "#0769f2",
                 dataPoints: []
             },
             {
@@ -176,6 +183,7 @@ class Charts extends Component {
                 showInLegend: true,
                 yValueFormatString: "#'%'",
                 markerSize: 0,
+                color: "#55accf",
                 dataPoints: []
             },
             {
@@ -185,6 +193,7 @@ class Charts extends Component {
                 yValueFormatString: "#'%'",
                 showInLegend: true,
                 markerSize: 0,
+                color: "#6ca0a3",
                 dataPoints: []
             }
 
@@ -210,7 +219,7 @@ class Charts extends Component {
         return (
             <Container>
                 <div class="text-center">
-                    <h3>Startp Companies in Silicon Valley</h3>
+                    <h3>Startup Companies in Silicon Valley</h3>
                 </div>
                 <Row>
                     <div class="col-sm-12">
