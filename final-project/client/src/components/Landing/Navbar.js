@@ -1,53 +1,53 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
+import React, { useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
 
-class Landing extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false
-        };
-        this.toggle = this.toggle.bind(this);
-    }
+const Landing = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
+  const toggle = () => setIsOpen(!isOpen);
 
-    render() {
-        
-        return (
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">The Impact</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Dashboards
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem href="/education">
+                  Education
+                </DropdownItem>
+                <DropdownItem href="/employment">
+                  Employment
+                </DropdownItem>
+                <DropdownItem href="/startups">
+                  Startups
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
 
-            <div>
-            
-                <Navbar color="light" light expand="md">
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <NavLink tag={Link} to="/home">Home</NavLink>
-                        </NavItem>
-                    </Nav>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink tag={Link} to="/employment">Employment</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} to="/startups">StartUp</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} to="/education">Education</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-                </div>
-)
-
-    }
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
 
 export default Landing;
