@@ -22,7 +22,7 @@ class Charts extends Component {
                 var data = res.data;
                 this.setState({ earlyStartupData: data.earlyStartup });
                 console.log(this.state.earlyStartupData);
-                this.setState({womenData: data.women})
+                this.setState({ womenData: data.women })
                 console.log(this.state.womenData);
             })
             .catch((error) => {
@@ -56,7 +56,7 @@ class Charts extends Component {
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
-                dockInsidePlotArea: true,                
+                dockInsidePlotArea: true,
             },
             data: [{
                 type: "line",
@@ -118,7 +118,7 @@ class Charts extends Component {
             let SVEarly = this.state.earlyStartupData[i].SVEarly;
 
             // push to chart
-            this.state.lineChart.data[0].dataPoints.push({ label: years, y: SFnumbers});
+            this.state.lineChart.data[0].dataPoints.push({ label: years, y: SFnumbers });
             this.state.lineChart.data[1].dataPoints.push({ label: years, y: SVnumbers });
             this.state.lineChart.data[2].dataPoints.push({ label: years, y: CAnumbers });
             this.state.lineChart.data[3].dataPoints.push({ label: years, y: SFEarly });
@@ -126,10 +126,10 @@ class Charts extends Component {
             this.state.lineChart.data[5].dataPoints.push({ label: years, y: CAEarly });
         });
 
-        
+
     }
 
-    renderWomenLineChart(){
+    renderWomenLineChart() {
         this.state.womenLineChart = {
             title: {
                 text: "Share of Startups founded by Women"
@@ -156,14 +156,14 @@ class Charts extends Component {
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
-                dockInsidePlotArea: true,                
+                dockInsidePlotArea: true,
             },
             data: [{
                 type: "line",
                 axisYType: "secondary",
                 name: "Total of Number Startups - Silicon Valley",
                 showInLegend: true,
-                yValueFormatString : "#'%'",
+                yValueFormatString: "#'%'",
                 markerSize: 0,
                 dataPoints: []
             },
@@ -172,7 +172,7 @@ class Charts extends Component {
                 axisYType: "secondary",
                 name: "Total of Number Startups - San Francisco",
                 showInLegend: true,
-                yValueFormatString : "#'%'",
+                yValueFormatString: "#'%'",
                 markerSize: 0,
                 dataPoints: []
             },
@@ -180,12 +180,12 @@ class Charts extends Component {
                 type: "line",
                 axisYType: "secondary",
                 name: "Total of Number Startups - California",
-                yValueFormatString : "#'%'",
+                yValueFormatString: "#'%'",
                 showInLegend: true,
                 markerSize: 0,
                 dataPoints: []
             }
-            
+
             ]
         };
         return Object.keys(this.state.womenData).map((i, index) => {
@@ -193,42 +193,43 @@ class Charts extends Component {
             let CA = this.state.womenData[i].CA;
             let SF = this.state.womenData[i].SF;
             let SV = this.state.womenData[i].SV;
-            
+
 
             // push to chart
-            this.state.womenLineChart.data[0].dataPoints.push({ label: years, y: SF});
+            this.state.womenLineChart.data[0].dataPoints.push({ label: years, y: SF });
             this.state.womenLineChart.data[1].dataPoints.push({ label: years, y: SV });
             this.state.womenLineChart.data[2].dataPoints.push({ label: years, y: CA });
-           
+
         });
-        
+
     }
 
-    render(){
+    render() {
         return (
             <Container>
                 <div class="text-center">
-                    <h3>Start Ups in Silicon Valley</h3>
+                    <h3>Startp Companies in Silicon Valley</h3>
                 </div>
                 <Row>
                     <div class="col-sm-12">
                         <div class="card m-4">
-                            
+
+                            <div class="card-body">
+                                {this.renderWomenLineChart()}
+                                <CanvasJSChart options={this.state.womenLineChart} />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card m-4">
+
                             <div class="card-body">
                                 {this.renderLineChart()}
                                 <CanvasJSChart options={this.state.lineChart} />
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="card m-4">
-                            
-                            <div class="card-body">
-                            {this.renderWomenLineChart()}
-                        <CanvasJSChart options={this.state.womenLineChart} />
-                            </div>
-                        </div>
-                    </div>
+
                 </Row>
             </Container>
         );
