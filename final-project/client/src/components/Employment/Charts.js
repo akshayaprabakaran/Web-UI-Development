@@ -175,7 +175,7 @@ class Charts extends Component {
             series: []
         }
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 3; i++) {
             this.state.barChart.series.push({ name: '', data: [] });
         }
 
@@ -191,17 +191,9 @@ class Charts extends Component {
                     this.state.barChart.series[1].name = location;
                     this.state.barChart.series[1].data.push(percentages);
                     break;
-                case 'Alameda County':
+                case 'California':
                     this.state.barChart.series[2].name = location;
                     this.state.barChart.series[2].data.push(percentages);
-                    break;
-                case 'California':
-                    this.state.barChart.series[3].name = location;
-                    this.state.barChart.series[3].data.push(percentages);
-                    break;
-                case 'United States':
-                    this.state.barChart.series[4].name = location;
-                    this.state.barChart.series[4].data.push(percentages);
                     break;
             }
         });
