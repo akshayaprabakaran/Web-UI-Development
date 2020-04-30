@@ -48,7 +48,7 @@ class Charts extends Component {
         this.state.barChart = {
             chart: {
                 type: 'bar',
-                height : "220px"
+                height : "250px"
             },
             title: {
                 text: "",
@@ -155,7 +155,7 @@ class Charts extends Component {
         this.state.columnChart = {
             chart: {
                 type: 'column',
-                height : "220px"
+                height : "250px"
             },
             title: {
                 text: "",
@@ -260,7 +260,7 @@ class Charts extends Component {
     renderCombinationChart() {
 
         this.state.combinationChart = {
-            height: "220",
+            height: "200",
             title: {
                 text: "",
                 fontFamily: "Verdana",
@@ -374,7 +374,7 @@ class Charts extends Component {
                 <Row>
                     <div class="col-sm-12">
                         <div class="card">
-                            <h6 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253'}}>Total Science ans Engineering Degrees Conferred</h6>
+                            <h6 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253'}}>Total Science and Engineering Degrees Conferred</h6>
                             <div class="card-body">
                             {this.renderCombinationChart()}
                                 <CanvasJSChart options={this.state.combinationChart}/>
