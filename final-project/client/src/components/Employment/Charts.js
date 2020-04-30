@@ -140,14 +140,7 @@ class Charts extends Component {
                 type: 'bar'
             },
             title: {
-                text: 'Relative Job Growth (2007 - 2019)',
-                style: {
-                    color: "#365253",
-                    fontFamily: "Verdana",
-                    fontColor: "#365253",
-                    fontWeight: 'bold',
-                    fontSize: 23
-                }
+                text: '',
             },
             xAxis: {
                 categories: ['2007 - 2019', '2010 - 2019', '2018 - 2019'],
@@ -257,12 +250,24 @@ class Charts extends Component {
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-12">
+                    <div class="card m-5">
+                        <h5 class="card-header text-center">Relative Job Growth (2007 - 2019)</h5>
+                        <div class="card-body">
+                            {this.renderBarChart()}
+                            <HighchartsReact
+                                highcharts={Highcharts}
+                                options={this.state.barChart}
+                            />
+                        </div>
+                    </div>
+                </div>
                 <Row>
                     <div class="col-sm-6">
                         <div class="card m-4">
                             <h5 class="card-header text-center">Areas Of Economic Activity: Silicon Valley and SF(2019)</h5>
                             <div class="card-body">
-                            {this.renderPieChart()}
+                                {this.renderPieChart()}
                                 <HighchartsReact
                                     highcharts={Highcharts}
                                     options={this.state.pieChart}
@@ -274,7 +279,7 @@ class Charts extends Component {
                         <div class="card m-4">
                             <h5 class="card-header text-center">Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)</h5>
                             <div class="card-body">
-                            {this.renderVerticalBarChart()}
+                                {this.renderVerticalBarChart()}
                                 <CanvasJSChart options={this.state.verticalBarChart} />
                             </div>
                         </div>
