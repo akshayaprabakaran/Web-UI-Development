@@ -295,7 +295,7 @@ class Charts extends Component {
 
             <Container>
                 <div class="text-center">
-                    <h3 style={{ fontColor: '#365253' }} >Education in Silicon Valley</h3>
+                    <h3 style={{ fontColor: '#365253' }} >Startup Companies in Silicon Valley</h3>
                 </div>
                 <Row>
                     <div class="col-sm-6">
