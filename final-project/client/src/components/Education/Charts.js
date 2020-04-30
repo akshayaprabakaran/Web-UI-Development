@@ -204,7 +204,7 @@ class Charts extends Component {
                 itemStyle: {
                     color: '#525252',
                     //fontWeight: 'bold',
-                    fontSize: 15
+                    fontSize: 13
                 }
             },
             toolTip: {
@@ -298,7 +298,7 @@ class Charts extends Component {
                 horizontalAlign: "center",
                 dockInsidePlotArea: false,
                 fontWeight: 'bolder',
-                fontSize: 17
+                fontSize: 15
             },
             data: [
                 {
@@ -347,23 +347,12 @@ class Charts extends Component {
 
             <Container>
                 <div class="text-center">
-                    <h3>Education in Silicon Valley</h3>
+                    <h3 style={{fontColor:'#365253'}} >Education in Silicon Valley</h3>
                 </div>
-                <Row>
-                    <div class="col-sm-12">
-                        <div class="card m-5">
-                            <h5 class="card-header text-center">Total Science ans Engineering Degrees Conferred</h5>
-                            <div class="card-body">
-                            {this.renderCombinationChart()}
-                                <CanvasJSChart options={this.state.combinationChart}/>
-                            </div>
-                        </div>
-                    </div>
-                </Row>
                 <Row>
                     <div class="col-sm-6">
                         <div class="card m-4">
-                            <h5 class="card-header text-center">Percentage of Adults by Educational Attainment in 2018</h5>
+                            <h4 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253' }}>Percentage of Adults by Educational Attainment in 2018</h4>
                             <div class="card-body">
                             {this.renderBarChart()}
                             <HighchartsReact highcharts={Highcharts} options={this.state.barChart}/>
@@ -372,10 +361,21 @@ class Charts extends Component {
                     </div>
                     <div class="col-sm-6">
                         <div class="card m-4">
-                            <h5 class="card-header text-center">Rate of Graduation, Share of Graduates Who Meet UC/CSU Requirements, and Dropout Rate</h5>
+                            <h4 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253'}}>Rate of Graduation, Graduates Meeting UC/CSU Requirements & Dropout Rate</h4>
                             <div class="card-body">
                             {this.renderColumnChart()}
                             <HighchartsReact highcharts={Highcharts} options={this.state.columnChart}/>
+                            </div>
+                        </div>
+                    </div>
+                </Row>
+                <Row>
+                    <div class="col-sm-12">
+                        <div class="card m-4">
+                            <h4 class="card-header text-center" style={{fontWeight:'bold',fontColor:'#365253'}}>Total Science ans Engineering Degrees Conferred</h4>
+                            <div class="card-body">
+                            {this.renderCombinationChart()}
+                                <CanvasJSChart options={this.state.combinationChart}/>
                             </div>
                         </div>
                     </div>
