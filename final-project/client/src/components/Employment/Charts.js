@@ -40,6 +40,7 @@ class Charts extends Component {
         this.state.lineChart = {
             animationEnabled: true,
             theme: "light2",
+            height : "200",
             title: {
                 text: "",
                 style: {
@@ -87,7 +88,8 @@ class Charts extends Component {
     renderPieChart() {
         this.state.pieChart = {
             chart: {
-                type: 'pie'
+                type: 'pie',
+                height : "200",
             },
             title: {
                 text: '',
@@ -137,7 +139,8 @@ class Charts extends Component {
     renderBarChart() {
         this.state.barChart = {
             chart: {
-                type: 'bar'
+                type: 'bar',
+                height : "200px",
             },
             title: {
                 text: '',
@@ -206,6 +209,7 @@ class Charts extends Component {
 
     renderVerticalBarChart() {
         this.state.verticalBarChart = {
+            height : "200",
             animationEnabled: true,
             theme: "light2",
             title: {
@@ -241,8 +245,9 @@ class Charts extends Component {
                 <div class="text-center">
                     <h3>Employment in Silicon Valley</h3>
                 </div>
-                <div class="col-sm-12">
-                    <div class="card m-5">
+                <Row>
+                <div class="col-sm-6">
+                    <div class="card m-1">
                         <h5 class="card-header text-center">Total Number of Jobs and Percent Change (2001-2019)</h5>
                         <div class="card-body">
                             {this.renderLineChart()}
@@ -250,8 +255,8 @@ class Charts extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <div class="card m-5">
+                <div class="col-sm-6">
+                    <div class="card m-1">
                         <h5 class="card-header text-center">Relative Job Growth (2007 - 2019)</h5>
                         <div class="card-body">
                             {this.renderBarChart()}
@@ -262,9 +267,10 @@ class Charts extends Component {
                         </div>
                     </div>
                 </div>
+                </Row>
                 <Row>
                     <div class="col-sm-6">
-                        <div class="card m-4">
+                        <div class="card m-1">
                             <h5 class="card-header text-center">Areas Of Economic Activity: Silicon Valley and SF(2019)</h5>
                             <div class="card-body">
                                 {this.renderPieChart()}
@@ -276,7 +282,7 @@ class Charts extends Component {
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="card m-4">
+                        <div class="card m-1">
                             <h5 class="card-header text-center">Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)</h5>
                             <div class="card-body">
                                 {this.renderVerticalBarChart()}

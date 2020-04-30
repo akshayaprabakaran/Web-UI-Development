@@ -33,8 +33,9 @@ class Charts extends Component {
     renderLineChart() {
         this.state.lineChart = {
             title: {
-                text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
+                text: ""
             },
+            height : "250",
             axisX: {
                 valueFormatString: "'YY",
                 crosshair: {
@@ -132,8 +133,9 @@ class Charts extends Component {
     renderWomenLineChart() {
         this.state.womenLineChart = {
             title: {
-                text: "Share of Startups founded by Women"
+                text: ""
             },
+            height : "250",
             axisX: {
                 valueFormatString: "YYYY",
                 crosshair: {
@@ -212,8 +214,8 @@ class Charts extends Component {
                 </div>
                 <Row>
                     <div class="col-sm-12">
-                        <div class="card m-4">
-
+                        <div class="card m-1">
+                        <h6 class="card-header text-center">Share of Startups founded by Women</h6>
                             <div class="card-body">
                                 {this.renderWomenLineChart()}
                                 <CanvasJSChart options={this.state.womenLineChart} />
@@ -221,8 +223,8 @@ class Charts extends Component {
                         </div>
                     </div>
                     <div class="col-sm-12">
-                        <div class="card m-4">
-
+                        <div class="card m-1">
+                        <h6 class="card-header text-center">Number of Seed or Early-Stage Startups, and Total Number of Startup Companies</h6>
                             <div class="card-body">
                                 {this.renderLineChart()}
                                 <CanvasJSChart options={this.state.lineChart} />
