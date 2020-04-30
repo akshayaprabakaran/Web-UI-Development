@@ -29,7 +29,7 @@ class Charts extends Component {
     renderLineChart() {
         this.state.lineChart = {
             title: {
-                text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
+                text: ""
             },
             axisX: {
                 valueFormatString: "'YY",
@@ -127,14 +127,20 @@ class Charts extends Component {
 
     render(){
         return (
-            <Container fluid>
-                {/* Columns are always 50% wide, on mobile and desktop */}
+            <Container>
+                <div class="text-center">
+                    <h3>Start Ups in Silicon Valley</h3>
+                </div>
                 <Row>
-                    <Col xs={6}>
-                        {this.renderLineChart()}
-                        <CanvasJSChart options={this.state.lineChart} />
-                    </Col>
-                    
+                    <div class="col-sm-12">
+                        <div class="card m-4">
+                            <h5 class="card-header text-center">Number of Seed or Early-Stage Startups, and Total Number of Startup Companies</h5>
+                            <div class="card-body">
+                                {this.renderLineChart()}
+                                <CanvasJSChart options={this.state.lineChart} />
+                            </div>
+                        </div>
+                    </div>
                 </Row>
             </Container>
         );

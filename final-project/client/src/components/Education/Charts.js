@@ -50,7 +50,7 @@ class Charts extends Component {
                 type: 'bar'
             },
             title: {
-                text: "Percentage of Adults by Educational Attainment in 2018",
+                text: "",
                 style: {
                     color: "#365253",
                     fontFamily: "Verdana",
@@ -156,7 +156,7 @@ class Charts extends Component {
                 type: 'column'
             },
             title: {
-                text: "Rate of Graduation, Share of Graduates Who Meet UC/CSU Requirements, and Dropout Rate",
+                text: "",
                 style: {
                     color: "#365253",
                     fontFamily: "Verdana",
@@ -260,7 +260,7 @@ class Charts extends Component {
         this.state.combinationChart = {
 
             title: {
-                text: "Total Science & Engineering Degrees Conferred",
+                text: "",
                 fontFamily: "Verdana",
                 fontColor: "#365253",
                 fontWeight: 'bold',
@@ -345,40 +345,42 @@ class Charts extends Component {
 
         return (
 
-            <Container fluid>
-                <div style={{ display: 'flex', paddingBottom: '30px', paddingTop: '10px', justifyContent: 'center', alignItems: 'center' }}>
-                    <h1>Silicon Valley - Education!</h1>
+            <Container>
+                <div class="text-center">
+                    <h3>Education in Silicon Valley</h3>
                 </div>
-
-
-                <Container>
-
-
-                    {/* Columns are always 50% wide, on mobile and desktop */}
-                    <Row>
-                        <Col xs={6}>
-                            {this.renderBarChart()}
-                            <HighchartsReact
-                                highcharts={Highcharts}
-                                options={this.state.barChart}
-                            />
-                        </Col>
-                        <Col xs={6}  >
-                            {this.renderColumnChart()}
-                            <HighchartsReact
-                                highcharts={Highcharts}
-                                options={this.state.columnChart}
-                            />
-                        </Col>
-                        <Col xs={12} style={{ paddingTop: '50px' }} >
+                <Row>
+                    <div class="col-sm-12">
+                        <div class="card m-5">
+                            <h5 class="card-header text-center">Total Science ans Engineering Degrees Conferred</h5>
+                            <div class="card-body">
                             {this.renderCombinationChart()}
-                            <CanvasJSChart options={this.state.combinationChart}
-                            />
-                        </Col>
-
-                    </Row>
+                                <CanvasJSChart options={this.state.combinationChart}/>
+                            </div>
+                        </div>
+                    </div>
+                </Row>
+                <Row>
+                    <div class="col-sm-6">
+                        <div class="card m-4">
+                            <h5 class="card-header text-center">Percentage of Adults by Educational Attainment in 2018</h5>
+                            <div class="card-body">
+                            {this.renderBarChart()}
+                            <HighchartsReact highcharts={Highcharts} options={this.state.barChart}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card m-4">
+                            <h5 class="card-header text-center">Rate of Graduation, Share of Graduates Who Meet UC/CSU Requirements, and Dropout Rate</h5>
+                            <div class="card-body">
+                            {this.renderColumnChart()}
+                            <HighchartsReact highcharts={Highcharts} options={this.state.columnChart}/>
+                            </div>
+                        </div>
+                    </div>
+                </Row>
                 </Container>
-            </Container>
         );
     }
 }

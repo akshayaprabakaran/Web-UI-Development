@@ -41,7 +41,7 @@ class Charts extends Component {
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Total Number of Jobs and Percent Change (2001-2019)",
+                text: "",
                 style: {
                     color: "#365253",
                     fontFamily: "Verdana",
@@ -90,7 +90,7 @@ class Charts extends Component {
                 type: 'pie'
             },
             title: {
-                text: 'Major Areas Of Economic Activity: Silicon Valley & San Francisco (2019)',
+                text: '',
                 style: {
                     color: "#365253",
                     fontFamily: "Verdana",
@@ -216,7 +216,7 @@ class Charts extends Component {
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)",
+                text: "",
                 style: {
                     color: "#365253",
                     fontFamily: "Verdana",
@@ -244,34 +244,41 @@ class Charts extends Component {
 
     render() {
         return (
-            <Container fluid>
-                <div style={{ display: 'flex', paddingBottom: '30px', paddingTop: '10px', justifyContent: 'center', alignItems: 'center' }}>
-                    <h1>Silicon Valley - Employment!</h1>
+            <Container>
+                <div class="text-center">
+                    <h3>Employment in Silicon Valley</h3>
                 </div>
-                {/* Columns are always 50% wide, on mobile and desktop */}
+                <div class="col-sm-12">
+                    <div class="card m-5">
+                        <h5 class="card-header text-center">Total Number of Jobs and Percent Change (2001-2019)</h5>
+                        <div class="card-body">
+                            {this.renderLineChart()}
+                            <CanvasJSChart options={this.state.lineChart} />
+                        </div>
+                    </div>
+                </div>
                 <Row>
-                    <Col xs={6}>
-                        {this.renderLineChart()}
-                        <CanvasJSChart options={this.state.lineChart} />
-                    </Col>
-                    <Col xs={6}>
-                        {this.renderPieChart()}
-                        <HighchartsReact
-                            highcharts={Highcharts}
-                            options={this.state.pieChart}
-                        />
-                    </Col>
-                    <Col xs={6}>
-                        {this.renderBarChart()}
-                        <HighchartsReact
-                            highcharts={Highcharts}
-                            options={this.state.barChart}
-                        />
-                    </Col>
-                    <Col xs={6}>
-                        {this.renderVerticalBarChart()}
-                        <CanvasJSChart options={this.state.verticalBarChart} />
-                    </Col>
+                    <div class="col-sm-6">
+                        <div class="card m-4">
+                            <h5 class="card-header text-center">Areas Of Economic Activity: Silicon Valley and SF(2019)</h5>
+                            <div class="card-body">
+                            {this.renderPieChart()}
+                                <HighchartsReact
+                                    highcharts={Highcharts}
+                                    options={this.state.pieChart}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card m-4">
+                            <h5 class="card-header text-center">Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)</h5>
+                            <div class="card-body">
+                            {this.renderVerticalBarChart()}
+                                <CanvasJSChart options={this.state.verticalBarChart} />
+                            </div>
+                        </div>
+                    </div>
                 </Row>
             </Container>
         );

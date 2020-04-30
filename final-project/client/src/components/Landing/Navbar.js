@@ -41,9 +41,6 @@ class Landing extends Component {
                             <NavItem>
                                 <NavLink tag={Link} to="/education">Education</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} to="//">Etc</NavLink>
-                            </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
