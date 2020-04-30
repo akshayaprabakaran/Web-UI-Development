@@ -226,6 +226,7 @@ class Charts extends Component {
 
     renderFundingLineChart() {
         this.state.fundingLineChart = {
+            zoomEnabled: true,
             title: {
                 text: "Seed or Early-Stage Funding Deals"
             },
