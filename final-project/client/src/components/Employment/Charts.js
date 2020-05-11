@@ -40,7 +40,7 @@ class Charts extends Component {
         this.state.lineChart = {
             animationEnabled: true,
             theme: "light2",
-            height : "200",
+            height : "220",
             title: {
                 text: "",
                 style: {
@@ -89,7 +89,7 @@ class Charts extends Component {
         this.state.pieChart = {
             chart: {
                 type: 'pie',
-                height : "200",
+                height : "220",
             },
             title: {
                 text: '',
@@ -140,7 +140,7 @@ class Charts extends Component {
         this.state.barChart = {
             chart: {
                 type: 'bar',
-                height : "200px",
+                height : "220px",
             },
             title: {
                 text: '',
@@ -200,7 +200,7 @@ class Charts extends Component {
 
     renderVerticalBarChart() {
         this.state.verticalBarChart = {
-            height : "200",
+            height : "220",
             animationEnabled: true,
             theme: "light2",
             title: {
@@ -239,7 +239,7 @@ class Charts extends Component {
                 <Row>
                 <div class="col-sm-6">
                     <div class="card m-1">
-                        <h5 class="card-header text-center">Total Number of Jobs and Percent Change (2001-2019)</h5>
+                        <h6 class="card-header text-center">Total Number of Jobs and Percent Change (2001-2019)</h6>
                         <div class="card-body">
                             {this.renderLineChart()}
                             <CanvasJSChart options={this.state.lineChart} />
@@ -248,7 +248,7 @@ class Charts extends Component {
                 </div>
                 <div class="col-sm-6">
                     <div class="card m-1">
-                        <h5 class="card-header text-center">Relative Job Growth (2007 - 2019)</h5>
+                        <h6 class="card-header text-center">Relative Job Growth (2007 - 2019)</h6>
                         <div class="card-body">
                             {this.renderBarChart()}
                             <HighchartsReact
@@ -262,7 +262,7 @@ class Charts extends Component {
                 <Row>
                     <div class="col-sm-6">
                         <div class="card m-1">
-                            <h5 class="card-header text-center">Areas Of Economic Activity: Silicon Valley and SF(2019)</h5>
+                            <h6 class="card-header text-center">Areas Of Economic Activity: Silicon Valley and SF(2019)</h6>
                             <div class="card-body">
                                 {this.renderPieChart()}
                                 <HighchartsReact
@@ -274,7 +274,7 @@ class Charts extends Component {
                     </div>
                     <div class="col-sm-6">
                         <div class="card m-1">
-                            <h5 class="card-header text-center">Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)</h5>
+                            <h6 class="card-header text-center">Growth of Jobs in Top U.S. Tech Talent Centers (2013-2018)</h6>
                             <div class="card-body">
                                 {this.renderVerticalBarChart()}
                                 <CanvasJSChart options={this.state.verticalBarChart} />

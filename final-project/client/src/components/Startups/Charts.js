@@ -316,6 +316,7 @@ class Charts extends Component {
                         </div>
                     </div>
                 </Row>
+                <br/>
                 <Row>
                     <div class="col-sm-12">
                         <div class="card">
