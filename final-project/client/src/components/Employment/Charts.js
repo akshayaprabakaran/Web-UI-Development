@@ -167,7 +167,10 @@ class Charts extends Component {
                     dataLabels: {
                         enabled: true
                     }
-                }
+                },
+                  series: {
+            pointWidth: 12
+        }
             },
             credits: {
                 enabled: false
@@ -175,7 +178,7 @@ class Charts extends Component {
             series: []
         }
 
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 2; i++) {
             this.state.barChart.series.push({ name: '', data: [] });
         }
 
@@ -187,13 +190,9 @@ class Charts extends Component {
                     this.state.barChart.series[0].name = location;
                     this.state.barChart.series[0].data.push(percentages);
                     break;
-                case 'Santa Clara & San Mateo Counties':
+                case 'California':
                     this.state.barChart.series[1].name = location;
                     this.state.barChart.series[1].data.push(percentages);
-                    break;
-                case 'California':
-                    this.state.barChart.series[2].name = location;
-                    this.state.barChart.series[2].data.push(percentages);
                     break;
             }
         });
