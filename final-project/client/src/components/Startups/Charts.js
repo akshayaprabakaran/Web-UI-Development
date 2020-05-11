@@ -38,7 +38,10 @@ class Charts extends Component {
         this.state.lineChart = {
             zoomEnabled: true,
             title: {
-                text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies"
+                text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies",
+                fontFamily: "Verdana",
+                fontColor: "#365253",
+                fontWeight:"bold"
             },
             height: "250",
             axisX: {
@@ -61,7 +64,8 @@ class Charts extends Component {
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
-                dockInsidePlotArea: true,
+                dockInsidePlotArea: false,
+                fontSize: 13
             },
             data: [{
                 type: "line",
@@ -69,7 +73,8 @@ class Charts extends Component {
                 name: "Total of Number Startups - San Francisco",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#91a2a3",
+                color: "#40664D",
+                lineThickness: 3,
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -80,6 +85,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#b25100",
+                lineThickness: 5,
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -89,7 +95,8 @@ class Charts extends Component {
                 name: "Total of Number Startups - California",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#7ce5eb",
+                color: "#9dc183",
+                lineThickness: 3,
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -99,7 +106,8 @@ class Charts extends Component {
                 name: "Seed or Early-Stage Startups - San Francisco",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#55accf",
+                color: "#5e9a78",
+                lineThickness: 3,
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -110,6 +118,7 @@ class Charts extends Component {
                 showInLegend: true,
                 markerSize: 0,
                 color: "#b25100",
+                lineThickness: 5,
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -119,7 +128,8 @@ class Charts extends Component {
                 name: "Seed or Early-Stage Startups - California",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#0769f2",
+                color: "#043927",
+                lineThickness: 3,
                 yValueFormatString: "# companies",
                 dataPoints: []
             }
@@ -149,7 +159,10 @@ class Charts extends Component {
     renderWomenLineChart() {
         this.state.womenLineChart = {
             title: {
-                text: "Share of Startups founded by Women"
+                text: "Share of Startups founded by Women",
+                fontFamily: "Verdana",
+                fontColor: "#365253",
+                fontWeight:"bold"
             },
             height: "250",
             axisX: {
@@ -173,7 +186,8 @@ class Charts extends Component {
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
-                dockInsidePlotArea: true,
+                dockInsidePlotArea: false,
+                fontSize: 13
             },
             data: [{
                 type: "line",
@@ -183,6 +197,7 @@ class Charts extends Component {
                 yValueFormatString: "#'%'",
                 markerSize: 0,
                 color: "#b25100",
+                lineThickness: 4,
                 dataPoints: []
             },
             {
@@ -192,7 +207,8 @@ class Charts extends Component {
                 showInLegend: true,
                 yValueFormatString: "#'%'",
                 markerSize: 0,
-                color: "#55accf",
+                lineThickness: 3,
+                color: "#365253",
                 dataPoints: []
             },
             {
@@ -202,7 +218,8 @@ class Charts extends Component {
                 yValueFormatString: "#'%'",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#6ca0a3",
+                lineThickness: 3,
+                color: "#a7ce9f",
                 dataPoints: []
             }
 
@@ -228,7 +245,10 @@ class Charts extends Component {
         this.state.fundingLineChart = {
             zoomEnabled: true,
             title: {
-                text: "Seed or Early-Stage Funding Deals"
+                text: "Seed or Early-Stage Funding Deals",
+                fontFamily: "Verdana",
+                fontColor: "#365253",
+                fontWeight:"bold"
             },
             height: "250",
             axisX: {
@@ -251,7 +271,8 @@ class Charts extends Component {
                 cursor: "pointer",
                 verticalAlign: "top",
                 horizontalAlign: "center",
-                dockInsidePlotArea: true,
+                dockInsidePlotArea: false,
+                fontSize: 13
             },
             data: [{
                 type: "line",
@@ -259,6 +280,7 @@ class Charts extends Component {
                 name: "Total of Number Startups - Silicon Valley",
                 showInLegend: true,
                 yValueFormatString: "# deals",
+                lineThickness: 4,
                 markerSize: 0,
                 color: "#b25100",
                 dataPoints: []
@@ -270,7 +292,8 @@ class Charts extends Component {
                 showInLegend: true,
                 yValueFormatString: "# deals",
                 markerSize: 0,
-                color: "#55accf",
+                lineThickness: 3,
+                color: "#365253",
                 dataPoints: []
             },
 
