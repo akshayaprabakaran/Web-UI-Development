@@ -40,7 +40,7 @@ class Charts extends Component {
         this.state.lineChart = {
             animationEnabled: true,
             theme: "light2",
-            height : "220",
+            height : "250",
             title: {
                 text: "",
                 style: {
@@ -89,7 +89,7 @@ class Charts extends Component {
         this.state.pieChart = {
             chart: {
                 type: 'pie',
-                height : "220",
+                height : "260",
             },
             title: {
                 text: '',
@@ -138,9 +138,10 @@ class Charts extends Component {
 
     renderBarChart() {
         this.state.barChart = {
+            colors: ['#b25100', '#365253'],
             chart: {
                 type: 'bar',
-                height : "220px",
+                height : "250px",
             },
             title: {
                 text: '',
@@ -200,26 +201,17 @@ class Charts extends Component {
 
     renderVerticalBarChart() {
         this.state.verticalBarChart = {
-            height : "220",
+            height : "250",
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "",
-                style: {
-                    color: "#365253",
-                    fontFamily: "Verdana",
-                    fontColor: "#365253",
-                    fontWeight: 'bold',
-                    fontSize: 23
-                }
+                text: ""                
             },
             axisY: {
                 title: "Number of New Tech Jobs (thousands)"
             },
             data: [{
                 type: "column",
-                markerSize: 0,
-                color: "#365253",
                 dataPoints: []
             }]
         }
