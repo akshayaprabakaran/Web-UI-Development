@@ -218,10 +218,9 @@ class Charts extends Component {
         return Object.keys(this.state.techGrowthData).map((i, index) => {
             let city = this.state.techGrowthData[i].city;
             let jobs = this.state.techGrowthData[i].jobs;
-            if(city == "San Francisco Bay Area"){
+            if(city === "Bay Area"){
                 this.state.verticalBarChart.data[0].dataPoints.push({ y: jobs, label: city, color: "#b25100" });
-            }
-            else{
+            } else{
                 this.state.verticalBarChart.data[0].dataPoints.push({ y: jobs, label: city, color: "#365253" });
             }
         });
