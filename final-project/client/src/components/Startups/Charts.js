@@ -41,7 +41,7 @@ class Charts extends Component {
                 text: "Number of Seed or Early-Stage Startups, and Total Number of Startup Companies",
                 fontFamily: "Verdana",
                 fontColor: "#365253",
-                fontWeight:"bold"
+                fontWeight: "bold"
             },
             height: "250",
             axisX: {
@@ -162,7 +162,7 @@ class Charts extends Component {
                 text: "Share of Startups founded by Women",
                 fontFamily: "Verdana",
                 fontColor: "#365253",
-                fontWeight:"bold"
+                fontWeight: "bold"
             },
             height: "250",
             axisX: {
@@ -248,7 +248,7 @@ class Charts extends Component {
                 text: "Seed or Early-Stage Funding Deals",
                 fontFamily: "Verdana",
                 fontColor: "#365253",
-                fontWeight:"bold"
+                fontWeight: "bold"
             },
             height: "250",
             axisX: {
