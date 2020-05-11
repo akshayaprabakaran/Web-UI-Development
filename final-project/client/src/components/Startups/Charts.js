@@ -79,7 +79,7 @@ class Charts extends Component {
                 name: "Total of Number Startups - Silicon Valley",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#6ca0a3",
+                color: "#b25100",
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -109,7 +109,7 @@ class Charts extends Component {
                 name: "Seed or Early-Stage Startups - Silicon Valley",
                 showInLegend: true,
                 markerSize: 0,
-                color: "#662fde",
+                color: "#b25100",
                 yValueFormatString: "# companies",
                 dataPoints: []
             },
@@ -182,7 +182,7 @@ class Charts extends Component {
                 showInLegend: true,
                 yValueFormatString: "#'%'",
                 markerSize: 0,
-                color: "#0769f2",
+                color: "#b25100",
                 dataPoints: []
             },
             {
@@ -260,7 +260,7 @@ class Charts extends Component {
                 showInLegend: true,
                 yValueFormatString: "# deals",
                 markerSize: 0,
-                color: "#0769f2",
+                color: "#b25100",
                 dataPoints: []
             },
             {

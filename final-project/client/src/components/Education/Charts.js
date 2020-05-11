@@ -12,7 +12,7 @@ import { MDBContainer } from 'mdbreact';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 Highcharts.setOptions({
-    colors: ["#365253", "#618685", "#5e9a78", "#85a47f", "#a7ce9f"]
+    colors: ["#365253", "#618685", "#5e9a78", "#85a47f", "#a7ce9f", "#b25100"]
 });
 
 class Charts extends Component {
