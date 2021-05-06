@@ -10,7 +10,7 @@
     "bootstrap": "^4.4.1",
     "canvasjs": "^1.8.3",
     "chart.js": "^2.9.3",
-    "highcharts": "^8.0.4",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^3.0.0",
     "mdbreact": "^4.25.6",
     "react": "^16.13.1",
